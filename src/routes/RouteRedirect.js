@@ -12,14 +12,15 @@ export const RedirectMissingLocale = function () {
 }
 
 export const RedirectNoMatch = inject("authStore", "userStore", "orgStore")(observer(
-  function ({ authStore, userStore, orgStore, ...props }) {  
+  function ({ authStore, userStore, orgStore, ...props }) {
     if (authStore.isAuth()) {
       if(!userStore.currentUser) return <Redirect to={'/' + props.locale + '/error/500/routes'} push />
       if(!userStore.currentUser.email.validated) return <Redirect to={'/' + props.locale + '/error/403/email'} push />
       if (undefsafe(userStore.currentUser, 'orgsAndRecords.length') > 0) {
         let oar = userStore.currentUser.orgsAndRecords[0];
+        console.log(JSON.parse(JSON.stringify(oar || {})));
         let org = orgStore.getOrganisation((oar.organisation._id || oar.organisation), null);
-        if(org) return <Redirect to={'/' + props.locale + '/' + org.tag} push />
+        if(org) return <Redirect to={'/' + props.locale + '/' + org.tag + '/dashboard'} push />
         else return <Redirect to={'/' + props.locale + '/welcome'} push />
       } else {
         return <Redirect to={'/' + props.locale + '/welcome'} push />

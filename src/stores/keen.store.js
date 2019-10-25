@@ -1,5 +1,6 @@
 import { observable, action, decorate, computed, observe } from "mobx";
 import KeenTracking from 'keen-tracking';
+import KeenAnalysis from 'keen-analysis';
 import Store from "./store";
 import orgStore from './organisation.store';
 import undefsafe from 'undefsafe';
@@ -10,40 +11,55 @@ class KeenStore extends Store{
     super("Organisation");
     this.queue = [];
     this.writesKeys = [];
+    this.readKeys = [];
     this.client = null;
+    this.readClient = null;
 
     this.unsubOrg = observe(orgStore, 'currentOrganisation', (change) => {
-      if(undefsafe(change.oldValue, '_id') !== undefsafe(change.newValue, '_id')) {
+      if(change.newValue && undefsafe(change.oldValue, '_id') !== undefsafe(change.newValue, '_id')) {
         this.fetchKeenWritesKey(change.newValue._id, change.newValue.public)
         .then((key) => {
           if(key) {
             this.client = new KeenTracking({
               projectId: process.env.REACT_APP_KEEN_PROJECT_ID,
-              writeKey: this.currentKeenWritesKey.value
+              writeKey: key
             });
-            this.currentKeenWritesKey.initialized = true;
 
             for(var i = 0; i < this.queue.length; i++) {
               this.recordEvent(this.queue[i].eventFamily, this.queue[i].object);
             }
             this.queue = [];
           }
-        })
+        });
+        this.fetchKeenReadKey(change.newValue._id)
+        .then((key) => {
+          if(key) {
+            this.readClient = new KeenAnalysis({
+              projectId: process.env.REACT_APP_KEEN_PROJECT_ID,
+              readKey: key
+            });
+          }
+        });
       }
     });
   }
 
-  get currentKeenWritesKey() {
+  get currentKeenReadKey() {
     try { return this.getKeenWritesKey(orgStore.currentOrganisation._id) } catch (e) { return null; };
   }
 
-  addKeenWritesKey(key, orgId) {
+  get currentKeenWritesKey() {
+    try { return this.getKeenReadKey(orgStore.currentOrganisation._id) } catch (e) { return null; };
+  }
+
+  addKeenKey(key, orgId, type) {
+    let variable = type === 'read' ? 'readKeys' : 'writesKeys';
     let newKeenKey = { value: key, organisation: orgId, initialized: false };
-    let index = this.writesKeys.findIndex(keenKey => JSON.stringify(keenKey.organisation) === JSON.stringify(orgId));
+    let index = this[variable].findIndex(keenKey => JSON.stringify(keenKey.organisation) === JSON.stringify(orgId));
     if (index > -1) {
-      this.writesKeys[index] = newKeenKey;
+      this[variable][index] = newKeenKey;
     } else {
-      this.writesKeys.push(newKeenKey);
+      this[variable].push(newKeenKey);
     }
   }
 
@@ -52,11 +68,23 @@ class KeenStore extends Store{
     return this.writesKeys.find(key =>key.organisation === orgId);
   }
 
+  getKeenReadKey(orgId) {
+    if (!orgId) return null;
+    return this.readKeys.find(key =>key.organisation === orgId);
+  }
+
   async fetchKeenWritesKey(orgId, isPublic) {
     if (!orgId) throw new Error('Organisation id is required.');
 
     let keenKey = await super.fetchResources(`/${orgId}/keen/${isPublic ? 'public' : 'private'}`);
-    this.addKeenWritesKey(keenKey, orgId);
+    this.addKeenKey(keenKey, orgId, 'writes');
+    return keenKey;
+  }
+
+  async fetchKeenReadKey(orgId) {
+    if (!orgId) throw new Error('Organisation id is required.');
+    let keenKey = await super.fetchResources(`/${orgId}/keen/queries`);
+    this.addKeenKey(keenKey, orgId, 'read');
     return keenKey;
   }
 
@@ -73,9 +101,13 @@ class KeenStore extends Store{
 
 decorate(KeenStore, {
   writesKeys: observable,
+  readKeys: observable,
   fetchKeenWritesKey: action,
+  fetchKeenReadKey: action,
   currentKeenWritesKey: computed,
-  addKeenWritesKey: action
+  currentKeenReadKey: computed,
+  addKeenKey: action,
+  readClient: observable
 });
 
 export default new KeenStore();
