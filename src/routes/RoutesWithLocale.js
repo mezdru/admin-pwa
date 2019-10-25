@@ -13,7 +13,6 @@ import { addLocaleData, IntlProvider } from "react-intl";
 import locale_en from 'react-intl/locale-data/en';
 import locale_fr from 'react-intl/locale-data/fr';
 import { Switch } from 'react-router-dom';
-import ProfileProvider from "../hoc/profile/Profile.provider.js";
 import messages_en from "../translations/en.json";
 import messages_fr from "../translations/fr.json";
 import RouteWithSubRoutes from './RouteWithSubRoutes';
@@ -37,8 +36,8 @@ class RoutesWithLocale extends React.Component {
       this.props.userStore.fetchCurrentUserAndData()
         .then((user) => {
           this.setState({ render: true });
-          if(this.props.commonStore.locale !== user.locale) {
-            this.props.userStore.updateCurrentUser({locale: this.props.commonStore.locale});
+          if (this.props.commonStore.locale !== user.locale) {
+            this.props.userStore.updateCurrentUser({ locale: this.props.commonStore.locale });
           }
         })
         .catch(() => { this.setState({ render: true }) })
@@ -50,20 +49,17 @@ class RoutesWithLocale extends React.Component {
   render() {
     const { routes, match } = this.props;
     const { render } = this.state;
-    if (!render) return <CircularProgress color="secondary" style={{position: 'fixed', top: '45%', left:0, right:0, margin: 'auto'}} />;
+    if (!render) return <CircularProgress color="secondary" style={{ position: 'fixed', top: '45%', left: 0, right: 0, margin: 'auto' }} />;
 
     let locale = match.params.locale.replace('-UK', '');
 
     return (
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <ProfileProvider>
-
-          <Switch>
-            {routes.map((route, i) => (
-              <RouteWithSubRoutes key={i} {...route} locale={locale} />
-            ))}
-          </Switch>
-        </ProfileProvider>
+        <Switch>
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} locale={locale} />
+          ))}
+        </Switch>
       </IntlProvider>
     )
   }

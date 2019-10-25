@@ -70,29 +70,16 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
 
+  <link href="https://cdn.jsdelivr.net/npm/keen-dataviz@3/dist/keen-dataviz.min.css" rel="stylesheet" />
+
   <script>
     var manifestLink = document.createElement('link');
     var faviconLink = document.createElement('link');
     manifestLink.rel = 'manifest';
     faviconLink.rel = 'icon';
     faviconLink.type = 'image/x-icon';
-
-    if (window.location.href.search('test') !== -1) {
-      manifestLink.href = '%PUBLIC_URL%/test/manifest.json';
-      faviconLink.href = '%PUBLIC_URL%/test/favicon.ico';
-      document.title = 'Les Testeurs';
-    } else if (window.location.href.search('meridiam') !== -1) {
-      manifestLink.href = '%PUBLIC_URL%/meridiam/manifest.json';
-      faviconLink.href = '%PUBLIC_URL%/meridiam/favicon.ico';
-      document.title = 'Meridiam Network';
-    } else if (window.location.href.search('circularity') !== -1) {
-      manifestLink.href = '%PUBLIC_URL%/circularity/manifest.json';
-      faviconLink.href = '%PUBLIC_URL%/circularity/favicon.ico';
-      document.title = 'Circularity';
-    } else {
-      manifestLink.href = '%PUBLIC_URL%/manifest.json';
-      faviconLink.href = '%PUBLIC_URL%/favicon.ico';
-    }
+    manifestLink.href = '%PUBLIC_URL%/manifest.json';
+    faviconLink.href = '%PUBLIC_URL%/favicon.ico';
     document.head.appendChild(faviconLink);
     document.head.appendChild(manifestLink);
   </script>
