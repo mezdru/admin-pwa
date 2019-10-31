@@ -77,7 +77,7 @@ class DashboardPage extends React.Component {
         <Grid container className={classes.root} >
           <Grid item xs={12} className={classes.funnel} >
             <Card>
-              <Funnel />
+              <Funnel keenQuery={queries.funnel}/>
             </Card>
           </Grid>
           {graphes.map(graphe =>

@@ -26,29 +26,7 @@ class Funnel extends React.Component {
           },
         });
         this.props.keenStore.readClient
-          .query({
-            analysisType: 'funnel',
-            steps: [
-              {
-                actorProperty: 'item.userEmitter',
-                eventCollection: 'userAttached',
-                timeframe: "this_7_days",
-                timezone: 'UTC'
-              },
-              {
-                actorProperty: 'item.userEmitter',
-                eventCollection: 'profileCreated',
-                timeframe: "this_7_days",
-                timezone: 'UTC'
-              },
-              {
-                actorProperty: 'item.userEmitter',
-                eventCollection: 'profileCompleted',
-                timeframe: "this_7_days",
-                timezone: 'UTC'
-              }
-            ]
-          })
+          .query(this.props.keenQuery)
           .then(function (results) {
             chart
               .render(results);
