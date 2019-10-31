@@ -1,16 +1,43 @@
 
 export const queries = {
   funnel: {
-    savedQueryName: 'funnel',
+    analysisType: 'funnel',
+    steps: [
+      {
+        actorProperty: 'item.userEmitter',
+        eventCollection: 'userAttached',
+        timeframe: "this_14_years",
+      },
+      {
+        actorProperty: 'item.userEmitter',
+        eventCollection: 'profileCreated',
+        timeframe: "this_14_years",
+      },
+      {
+        actorProperty: 'item.userEmitter',
+        eventCollection: 'profileCompleted',
+        timeframe: "this_14_years",
+      }
+    ]
   },
   userActiveInOrg: {
-    savedQueryName: 'users-active---last-7-days',
+    analysisType: 'count_unique',
+    eventCollection: 'accessIn',
+    targetProperty: 'item.userEmitter',
+    timeframe: "this_7_days",
+    interval: 'daily',
   },
   searchInOrg: {
-    savedQueryName: 'search_last7days',
+    analysisType: 'count',
+    eventCollection: 'search',
+    timeframe: "this_7_days",
+    interval: 'daily',  
   },
   contactInOrg: {
-    savedQueryName: 'contacts-last-7-days',
+      analysisType: 'count',
+      eventCollection: 'contact',
+      timeframe: "this_7_days",
+      interval: 'daily',
   },
   contactByType: {
     analysisType: 'count',
