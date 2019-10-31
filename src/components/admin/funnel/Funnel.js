@@ -50,7 +50,6 @@ class Funnel extends React.Component {
             ]
           })
           .then(function (results) {
-            console.log(results);
             chart
               .render(results);
           })
