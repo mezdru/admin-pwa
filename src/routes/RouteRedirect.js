@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 import undefsafe from 'undefsafe';
+import UrlService from '../services/url.service';
 
 export const RedirectMissingLocale = function () {
   let locale = navigator.language || navigator.browserLanguage;
@@ -18,15 +19,14 @@ export const RedirectNoMatch = inject("authStore", "userStore", "orgStore")(obse
       if(!userStore.currentUser.email.validated) return <Redirect to={'/' + props.locale + '/error/403/email'} push />
       if (undefsafe(userStore.currentUser, 'orgsAndRecords.length') > 0) {
         let oar = userStore.currentUser.orgsAndRecords[0];
-        console.log(JSON.parse(JSON.stringify(oar || {})));
         let org = orgStore.getOrganisation((oar.organisation._id || oar.organisation), null);
         if(org) return <Redirect to={'/' + props.locale + '/' + org.tag + '/dashboard'} push />
-        else return <Redirect to={'/' + props.locale + '/welcome'} push />
+      else return window.location.href = UrlService.getFrontflipUrl('/welcome', null, props.locale);
       } else {
-        return <Redirect to={'/' + props.locale + '/welcome'} push />
+        return window.location.href = UrlService.getFrontflipUrl('/welcome', null, props.locale);
       }
     } else {
-      return <Redirect to={'/' + props.locale + '/signin'} push />
+      return window.location.href = UrlService.getFrontflipUrl('/signin', null, props.locale);
     }
   }
 ));
