@@ -88,7 +88,7 @@ class HeaderDrawer extends Component {
             {(auth && undefsafe(currentOrganisation, '_id')) && (
               <React.Fragment>
                 <List className={'leftSubmenu'}>
-                  <ListItem onClick={this.props.handleDrawerClose} component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag')}>
+                  <ListItem onClick={this.props.handleDrawerClose} component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'}>
                     <ListItemAvatar>
                       <Logo type={'organisation'} alt={undefsafe(currentOrganisation, 'name')} className={classes.logoBorder} />
                     </ListItemAvatar>
@@ -96,26 +96,26 @@ class HeaderDrawer extends Component {
                       primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color: 'white', fontSize: '1rem' } }} />
                   </ListItem>
 
+                  {(undefsafe(currentUser, 'superadmin') || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
+                    <>
+                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'} >
+                        <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.dashboard' })} />
+                      </ListItem>
+                      <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/users'} >
+                        <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.userList' })} />
+                      </ListItem>
+                      <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/data'} >
+                        <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.importExport' })} />
+                      </ListItem>
+                    </>
+                  )}
+
                   {(undefsafe(currentOrganisation, 'canInvite') || undefsafe(currentUser, 'superadmin') || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
                     <ListItem>
                       <InvitationDialog />
                     </ListItem>
                   )}
-                  {(undefsafe(currentUser, 'superadmin') || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
-                    <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/organisation', currentOrganisation.tag)} target="_blank">
-                      <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.organisationAdmin' })} />
-                    </ListItem>
-                  )}
-                  <ListItem>
-                    <ListItemText primary={
-                      (undefsafe(currentOrganisation, 'premium') ? intl.formatMessage({ id: 'menu.drawer.organisationInfoPremium' }) : intl.formatMessage({ id: 'menu.drawer.organisationInfo' }))
-                    } />
-                  </ListItem>
-                  <ListItem button component="a" href={'mailto:premium@wingzy.io'} target="_blank" >
-                    <ListItemText primary={
-                      (undefsafe(currentOrganisation, 'premium') ? intl.formatMessage({ id: 'menu.drawer.contactUsPremium' }) : intl.formatMessage({ id: 'menu.drawer.contactUs' }))
-                    } />
-                  </ListItem>
+
                   {(currentUser && currentUser.orgsAndRecords && (currentUser.orgsAndRecords.length > 1)) && (
                     <React.Fragment>
                       <Divider className={classes.divider} />

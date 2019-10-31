@@ -16,6 +16,7 @@ import { Switch } from 'react-router-dom';
 import messages_en from "../translations/en.json";
 import messages_fr from "../translations/fr.json";
 import RouteWithSubRoutes from './RouteWithSubRoutes';
+import Layout from '../pages/Layout.js';
 
 addLocaleData([...locale_en, ...locale_fr]);
 const messages = {
@@ -55,11 +56,14 @@ class RoutesWithLocale extends React.Component {
 
     return (
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <Switch>
-          {routes.map((route, i) => (
-            <RouteWithSubRoutes key={i} {...route} locale={locale} />
-          ))}
-        </Switch>
+        <>
+          <Layout />
+          <Switch>
+            {routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route} locale={locale} />
+            ))}
+          </Switch>
+        </>
       </IntlProvider>
     )
   }
