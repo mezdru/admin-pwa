@@ -4,11 +4,9 @@ import authStore from './stores/auth.store';
 import commonStore from './stores/common.store';
 import UrlService from './services/url.service';
 import LogRocket from 'logrocket';
-
 const superagent = superagentPromise(_superagent, global.Promise);
-const locale = ((process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') ? (commonStore.getCookie('locale') || commonStore.locale) : 'en-UK');
 const API_ROOT_AUTH = process.env.REACT_APP_API_ROOT_AUTH;
-const API_ROOT = process.env.REACT_APP_API_ROOT + '/' + locale;
+const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const handleErrors = err => {
   if(err) LogRocket.error(err);
@@ -175,11 +173,11 @@ const Auth = {
 const User = {
   getOne: (userId) =>
     requests.get(
-      API_ROOT + '/api/users/' + userId
+      API_ROOT + '/' + commonStore.locale + '/api/users/' + userId
     ),
   welcomeUser: (params) =>
     requests.put(
-      API_ROOT + '/api/users/me/orgsAndRecords',
+      API_ROOT + '/' + commonStore.locale + '/api/users/me/orgsAndRecords',
       {
         orgAndRecord: {
           organisation: params.orgId,
@@ -189,7 +187,7 @@ const User = {
     ),
   put: (orgId, userId, user) =>
     requests.put(
-      API_ROOT + '/api/users/' + userId,
+      API_ROOT + '/' + commonStore.locale + '/api/users/' + userId,
       {
         user: user
       }
@@ -199,15 +197,15 @@ const User = {
 const Record = {
   getOne: (recordId) =>
     requests.get(
-      API_ROOT + '/api/records/' + recordId
+      API_ROOT + '/' + commonStore.locale + '/api/records/' + recordId
     ),
   get: (query) =>
     requests.get(
-      `${API_ROOT}/api/records${query}`
+      `${API_ROOT + '/' + commonStore.locale}/api/records${query}`
     ),
   post: (record) =>
     requests.post(
-      API_ROOT + '/api/records/',
+      API_ROOT + '/' + commonStore.locale + '/api/records/',
       {
         orgId: record.organisation,
         record: record
@@ -215,7 +213,7 @@ const Record = {
     ),
   put: (orgId, recordId, record) =>
     requests.put(
-      API_ROOT + '/api/records/' + recordId,
+      API_ROOT + '/' + commonStore.locale + '/api/records/' + recordId,
       {
         orgId: orgId,
         record: record
@@ -223,7 +221,7 @@ const Record = {
     ),
   delete: (recordId) =>
     requests.del(
-      API_ROOT + '/api/records/' + recordId
+      API_ROOT + '/' + commonStore.locale + '/api/records/' + recordId
     )
 
 };
@@ -231,11 +229,11 @@ const Record = {
 const Organisation = {
   getOne: (orgId) =>
     requests.get(
-      API_ROOT + '/api/organisations/' + orgId
+      API_ROOT + '/' + commonStore.locale + '/api/organisations/' + orgId
     ),
   get: (query) =>
     requests.get(
-      API_ROOT + '/api/organisations' + query
+      API_ROOT + '/' + commonStore.locale + '/api/organisations' + query
     )
 }
 
@@ -245,11 +243,11 @@ const Organisation = {
 const Email = {
   confirmLoginEmail: (orgTag) =>
     requests.post(
-      API_ROOT + '/api/emails/confirmation/' + (orgTag ? orgTag : '')
+      API_ROOT + '/' + commonStore.locale + '/api/emails/confirmation/' + (orgTag ? orgTag : '')
     ),
   passwordForgot: (userEmail) =>
     requests.post(
-      API_ROOT + '/api/emails/password',
+      API_ROOT + '/' + commonStore.locale + '/api/emails/password',
       {
         userEmail: userEmail
       }
@@ -263,18 +261,18 @@ const Email = {
     ),
   confirmIntegrationEmail: (integrationName) =>
     requests.post(
-      API_ROOT + '/api/emails/security/integration/' + integrationName
+      API_ROOT + '/' + commonStore.locale + '/api/emails/security/integration/' + integrationName
     ),
   confirmationInvitation: (orgId, invitationUrl) =>
     requests.post(
-      API_ROOT + '/api/emails/invitation/' + orgId + '/confirmation',
+      API_ROOT + '/' + commonStore.locale + '/api/emails/invitation/' + orgId + '/confirmation',
       {
         invitationUrl: invitationUrl
       }
     ),
   sendHelpRequest: (hrId) =>
     requests.post(
-      API_ROOT + '/api/emails/helpRequest/' + hrId
+      API_ROOT + '/' + commonStore.locale + '/api/emails/helpRequest/' + hrId
     )
 }
 
@@ -286,21 +284,6 @@ const Invitation = {
         invitationCode: {
           organisation: orgId,
           creator: userId
-        }
-      }
-    )
-}
-
-const SearchLog = {
-  postSearchLog: (orgId, tagsArray, query, resultsLength) =>
-    requests.post(
-      API_ROOT + '/api/statistics',
-      {
-        searchLog: {
-          tags: tagsArray,
-          query: query,
-          results: resultsLength,
-          organisation: orgId
         }
       }
     )
@@ -348,7 +331,6 @@ export default {
   User,
   Email,
   Invitation,
-  SearchLog,
   Clap,
   HelpRequest,
   ConnectionLog

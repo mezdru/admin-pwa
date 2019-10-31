@@ -20,7 +20,6 @@ import keenStore from './stores/keen.store';
 import HttpsRedirect from 'react-https-redirect';
 import { MuiThemeProvider } from "@material-ui/core";
 import theme from "./theme";
-
 const stores = {
   authStore,
   userStore,
