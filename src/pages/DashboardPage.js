@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Grid, withStyles, Typography } from '@material-ui/core';
 import Funnel from '../components/admin/funnel/Funnel';
 import Card from '../components/utils/container/Card';
-import Graph from '../components/admin/graph/Graph';
+import Chart from '../components/admin/chart/Chart';
 import { queries } from '../components/configs/keenQuery.config.js';
 import BannerResizable from '../components/utils/banner/BannerResizable';
 import '../components/configs/keenOverride.css';
@@ -21,22 +21,6 @@ const style = {
     '& *': {
       transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)'
     }
-  },
-  funnel: {
-    // width: '100%',
-    // height: 400,
-    // margin: 8
-  },
-  block: {
-  },
-  blackFilter: {
-    position: 'fixed',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'white',
-    opacity: 0.50
-    ,
-    overflow: 'hidden',
   },
 }
 
@@ -67,13 +51,6 @@ class DashboardPage extends React.Component {
 
     return (
       <>
-        <BannerResizable
-          type={'organisation'}
-          initialHeight={100}
-          style={{ position: 'fixed' }}
-        />
-        <div className={classes.blackFilter} ></div>
-
         <Grid container className={classes.root} >
           <Grid item xs={12} className={classes.funnel} >
             <Card>
@@ -83,7 +60,7 @@ class DashboardPage extends React.Component {
           {graphes.map( (graphe,index) =>
             <Grid item xs={12} md={6} lg={4} className={classes.block} key={index}>
               <Card>
-                <Graph title={graphe.title} keenQuery={graphe.query} graphId={graphe.graphId} type={graphe.type} />
+                <Chart title={graphe.title} keenQuery={graphe.query} graphId={graphe.graphId} type={graphe.type} />
               </Card>
             </Grid>
           )}

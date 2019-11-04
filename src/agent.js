@@ -175,6 +175,10 @@ const User = {
     requests.get(
       API_ROOT + '/' + commonStore.locale + '/api/users/' + userId
     ),
+  get: (query) =>
+    requests.get(
+      API_ROOT + '/' + commonStore.locale + '/api/users' + query
+    ),
   welcomeUser: (params) =>
     requests.put(
       API_ROOT + '/' + commonStore.locale + '/api/users/me/orgsAndRecords',

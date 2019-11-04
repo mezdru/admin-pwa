@@ -20,7 +20,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className={this.props.classes.root} >
+      <div className={this.props.classes.root} {...this.props}>
         {this.props.children}
       </div>
     );
