@@ -31,7 +31,7 @@ class HeaderDrawer extends Component {
     e.preventDefault();
     this.props.handleDrawerClose();
     this.props.authStore.logout().then(() => {
-      window.location.href = UrlService.createUrl(window.location.host, this.props.orgStore.currentOrganisation ? '/' + this.props.orgStore.currentOrganisation.tag : '', null);
+      window.location.href = UrlService.getFrontflipUrl('/signin', undefsafe(this.props.orgStore.currentOrganisation, 'tag'), this.props.commonStore.locale);
     });
   }
 

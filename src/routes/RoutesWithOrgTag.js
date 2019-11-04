@@ -4,6 +4,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import {inject, observer} from 'mobx-react';
 import {Redirect} from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import UrlService from '../services/url.service';
 
 class RoutesWithOrgTag extends React.Component {
 
@@ -20,15 +21,20 @@ class RoutesWithOrgTag extends React.Component {
       }
       this.setState({render: true})
     })
-    .catch(() => {this.setState({redirect404: true})})
+    .catch((e) => {
+      this.setState({redirect404: true});
+    })
     this.props.commonStore.setUrlParams(this.props.match);
   }
+  isAdminInOrg = () => (this.props.userStore.currentUser && (this.props.userStore.currentUser.superadmin || (this.props.userStore.currentOrgAndRecord && this.props.userStore.currentOrgAndRecord.admin)));
   
   render() {
     const {routes} = this.props;
     const {locale} = this.props.commonStore;
     const { redirect404, render} = this.state;
 
+    if(!this.props.authStore.isAuth()) return window.location.href = UrlService.getFrontflipUrl('/signin', this.props.match.params.orgTag, this.props.commonStore.locale);
+    if(!this.isAdminInOrg()) return window.location.href = UrlService.getFrontflipUrl('', this.props.match.params.orgTag, this.props.commonStore.locale);
     if(redirect404) return <Redirect to={'/' + locale + '/error/404/organisation'} push/>
     if (!render) return <CircularProgress color="secondary" style={{position: 'fixed', top: '45%', left:0, right:0, margin: 'auto'}} />;
 
@@ -42,7 +48,7 @@ class RoutesWithOrgTag extends React.Component {
   }
 }
 
-export default (inject('commonStore', 'orgStore')(
+export default (inject('commonStore', 'orgStore', 'authStore', 'userStore')(
   (observer(
     RoutesWithOrgTag
   )))
