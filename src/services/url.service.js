@@ -7,6 +7,14 @@ class UrlService {
   url;
   locale;
 
+  getFrontflipUrl(path, orgTag, locale) {
+    return (process.env.NODE_ENV === 'development' ? 'http://' : 'https://') +
+      process.env.REACT_APP_HOST_FRONTFLIP +
+      '/' + locale +
+      (orgTag ? '/' + orgTag : '') +
+      path
+  }
+
   checkEnv() {
     this.env = process.env.NODE_ENV;
     if (window.location.href.search('staging') !== -1) {

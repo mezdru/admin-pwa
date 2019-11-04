@@ -80,8 +80,8 @@ class DashboardPage extends React.Component {
               <Funnel keenQuery={queries.funnel}/>
             </Card>
           </Grid>
-          {graphes.map(graphe =>
-            <Grid item xs={12} md={6} lg={4} className={classes.block} >
+          {graphes.map( (graphe,index) =>
+            <Grid item xs={12} md={6} lg={4} className={classes.block} key={index}>
               <Card>
                 <Graph title={graphe.title} keenQuery={graphe.query} graphId={graphe.graphId} type={graphe.type} />
               </Card>

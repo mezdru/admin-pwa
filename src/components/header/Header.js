@@ -13,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import undefsafe from 'undefsafe';
 import classNames from 'classnames';
 import ErrorBoundary from '../utils/errors/ErrorBoundary';
+import urlService from '../../services/url.service';
 
 class App extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class App extends Component {
             onClick={this.handleDrawerOpen}
             children={<Logo type={'organisation'} />} id="header-button" />
           {!auth && !isSigninOrSignupPage && (
-            <Button variant="text" to={"/" + locale + (orgTag ? '/' + orgTag : '') + '/signin'} component={Link} className={classes.menuLink}><FormattedMessage id="Sign In" /></Button>
+            <Button variant="text" href={urlService.getFrontflipUrl('/signin', orgTag, locale)} component="a" className={classes.menuLink}><FormattedMessage id="Sign In" /></Button>
           )}
           <HeaderDrawer handleDrawerOpen={this.handleDrawerOpen}
             handleDrawerClose={this.handleDrawerClose}
