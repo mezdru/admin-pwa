@@ -6,37 +6,42 @@ import { CircularProgress } from '@material-ui/core';
 
 class Graph extends React.Component {
 
+  loadDataviz = () => {
+    const chart = new KeenDataviz({
+      container: '#' + this.props.graphId, // querySelector
+      title: this.props.title,
+      type: this.props.type,
+      grid: {
+        x: {
+          show: false
+        },
+        y: {
+          show: false
+        }
+      },
+      zoom: {
+        enabled: true
+      },
+      point: { "show": 2.5 },
+    });
+    this.props.keenStore.readClient
+      .query(this.props.keenQuery)
+      .then((results) => {
+        chart
+          .render(results);
+      })
+      .catch((error) => {
+        chart
+          .message(error.message);
+      });
+  }
+
   componentDidMount() {
+    if (this.props.keenStore.readClient) this.loadDataviz();
+
     observe(this.props.keenStore, 'readClient', (change) => {
       if (change && change.newValue) {
-        const chart = new KeenDataviz({
-          container: '#' + this.props.graphId, // querySelector
-          title: this.props.title,
-          type: this.props.type,
-          grid: {
-            x: {
-              show: false
-            },
-            y: {
-              show: false
-            }
-          },
-          zoom: {
-            enabled: true
-          },
-          // axis: {"y":{"label":{"position":"outer-middle"},"height":60},"x":{"label":{"position":"outer-left"},"height":60}},
-          point: {"show":2.5},
-        });
-        this.props.keenStore.readClient
-          .query(this.props.keenQuery)
-          .then((results) => {
-            chart
-              .render(results);
-          })
-          .catch((error) => {
-            chart
-              .message(error.message);
-          });
+        this.loadDataviz();
       }
     });
   }

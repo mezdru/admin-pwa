@@ -123,7 +123,7 @@ class UsersListPage extends React.Component {
       <Grid container className={classes.root} >
         <Grid item xs={12} >
           <Card style={{ overflowX: 'auto', }} >
-            <Typography variant="h1" style={{ float: 'left' }}>
+            <Typography variant="h1" style={{ float: 'left', fontSize: '1.6rem', fontWeight: 500 }}>
               <FormattedMessage id="menu.drawer.admin.userList" />
             </Typography>
             <div className={classes.usersActionContainer} >

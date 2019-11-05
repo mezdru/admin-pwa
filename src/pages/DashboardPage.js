@@ -1,11 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Grid, withStyles, Typography } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 import Funnel from '../components/admin/funnel/Funnel';
 import Card from '../components/utils/container/Card';
 import Chart from '../components/admin/chart/Chart';
 import { queries } from '../components/configs/keenQuery.config.js';
-import BannerResizable from '../components/utils/banner/BannerResizable';
 import '../components/configs/keenOverride.css';
 import { injectIntl } from 'react-intl';
 

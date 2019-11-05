@@ -7,34 +7,40 @@ import { injectIntl } from 'react-intl';
 
 class Funnel extends React.Component {
 
+  loadDataviz = () => {
+    const chart = new KeenDataviz({
+      container: '#funnel-container', // querySelector
+      type: this.props.width === 'xs' ? 'funnel' : 'horizontal-funnel',
+      title: null,
+      labelMapping: {
+        userAttached: this.props.intl.formatMessage({ id: 'dashboard.funnel.userAttached' }),
+        profileCreated: this.props.intl.formatMessage({ id: 'dashboard.funnel.profileCreated' }),
+        profileCompleted: this.props.intl.formatMessage({ id: 'dashboard.funnel.profileCompleted' })
+      },
+      funnel: {
+        percents: {
+          show: true,
+        },
+      },
+    });
+    this.props.keenStore.readClient
+      .query(this.props.keenQuery)
+      .then(function (results) {
+        chart
+          .render(results);
+      })
+      .catch(function (error) {
+        chart
+          .message(error.message);
+      });
+  }
+
   componentDidMount() {
+    if(this.props.keenStore.readClient) this.loadDataviz();
+    
     observe(this.props.keenStore, 'readClient', (change) => {
       if (change && change.newValue) {
-        const chart = new KeenDataviz({
-          container: '#funnel-container', // querySelector
-          type: this.props.width === 'xs' ? 'funnel' : 'horizontal-funnel',
-          title: null,
-          labelMapping: {
-            userAttached: this.props.intl.formatMessage({id: 'dashboard.funnel.userAttached'}),
-            profileCreated: this.props.intl.formatMessage({id: 'dashboard.funnel.profileCreated'}),
-            profileCompleted: this.props.intl.formatMessage({id: 'dashboard.funnel.profileCompleted'})
-          },
-          funnel: {
-            percents: {
-              show: true,
-            },
-          },
-        });
-        this.props.keenStore.readClient
-          .query(this.props.keenQuery)
-          .then(function (results) {
-            chart
-              .render(results);
-          })
-          .catch(function (error) {
-            chart
-              .message(error.message);
-          });
+        this.loadDataviz();
       }
     });
   }
