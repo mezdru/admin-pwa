@@ -109,6 +109,11 @@ class UsersListPage extends React.Component {
       }).catch(e => { console.log(e) });
   }
 
+  handleRemoveAccount = (userId) => {
+    let users = this.state.users.filter(u => u._id !== userId);
+    this.setState({users: users});
+  }
+
   render() {
     const { classes } = this.props;
     const { users, order, orderBy, page, rowsPerPage } = this.state;
@@ -135,7 +140,7 @@ class UsersListPage extends React.Component {
               <TableBody>
                 {this.stableSort(users, this.getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((user, index) => <UsersListRow classes={classes} user={user} key={user._id} />
+                  .map((user, index) => <UsersListRow classes={classes} user={user} key={user._id} onDelete={this.handleRemoveAccount} />
                   )}
                 {emptyRows > 0 && (
                   <TableRow style={{ height: 72.8 * emptyRows }}>

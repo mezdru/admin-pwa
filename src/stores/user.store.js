@@ -24,6 +24,11 @@ class UserStore extends Store {
     return [];
   }
 
+  async banUser(userId, orgId) {
+    if(!userId || !orgId) return Promise.reject("Missing parameters");
+    return await super.customRequest('ban', `/${userId}/ban/${orgId}`);
+  }
+
   async fetchCurrentUser() {
     let user = await super.fetchResource('me');
     this.currentUser = user;

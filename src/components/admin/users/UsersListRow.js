@@ -5,8 +5,8 @@ import MiniProfileCard from '../../../components/utils/container/MiniProfileCard
 import undefsafe from 'undefsafe';
 import RemoveAccountAction from './RemoveAccountAction';
 
-export default React.memo(({ user, classes, ...props }) =>
-  <TableRow>
+export default React.memo(({ user, classes, onDelete, ...props }) =>
+  <TableRow >
     <TableCell align="left" >
       <MiniProfileCard
         pictureUrl={undefsafe(user.orgsAndRecords[0], 'record.picture.url')}
@@ -24,7 +24,7 @@ export default React.memo(({ user, classes, ...props }) =>
     <TableCell>{user.orgsAndRecords[0].welcomed_date && moment(user.orgsAndRecords[0].welcomed_date).calendar()}</TableCell>
     <TableCell>{moment(user.last_login || user.created).calendar()}</TableCell>
     <TableCell>
-      <RemoveAccountAction userId={user._id} recordId={undefsafe(user.orgsAndRecords[0].record, '_id')} />
+      <RemoveAccountAction userId={user._id} recordId={undefsafe(user.orgsAndRecords[0].record, '_id')} onDelete={onDelete} />
     </TableCell>
   </TableRow>
 );
