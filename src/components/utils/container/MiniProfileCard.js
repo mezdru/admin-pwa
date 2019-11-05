@@ -3,11 +3,9 @@ import { withStyles, Tooltip } from '@material-ui/core';
 import UrlService from '../../../services/url.service';
 import { inject, observer } from 'mobx-react';
 import defaultPicture from '../../../resources/images/placeholder_person.png';
-import { DoneAll, Clear } from '@material-ui/icons';
-import green from '@material-ui/core/colors/green';
+import { Star } from '@material-ui/icons';
 import moment from 'moment';
 import { injectIntl } from 'react-intl';
-import classNames from 'classnames';
 
 const style = theme => ({
   root: {
@@ -40,12 +38,7 @@ const style = theme => ({
     left: 190,
     top: 10,
     fontSize: '1.2rem',
-  },
-  success: {
-    color: green[600]
-  },
-  error: {
-    color: theme.palette.error.dark
+    color: '#FFC83D'
   }
 });
 
@@ -75,15 +68,11 @@ class Card extends React.Component {
           <img src={pictureUrl || defaultPicture} alt="Profile picture" className={classes.picture} />
           <div className={classes.name} >{this.formatName(name)}</div>
         </div>
-        {completedAt ? (
+        {completedAt && (
           <Tooltip title={this.props.intl.formatMessage({ id: "users.row.completedAt" }, { completedAtDate: moment(completedAt).calendar() })} placement="bottom">
-            <DoneAll className={classNames(classes.badge, classes.success)} />
+            <Star className={classes.badge} />
           </Tooltip>
-        ) : (
-          <Tooltip title={this.props.intl.formatMessage({ id: "users.row.notCompleted" })} placement="bottom">
-            <Clear className={classNames(classes.badge, classes.error)} />
-          </Tooltip>
-          )}
+        )}
       </a>
     );
   }

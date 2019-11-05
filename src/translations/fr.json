@@ -46,18 +46,17 @@
     "welcome.page.subtitle": "Wingzy c'est l'annuaire intelligent de votre entreprise.<br/> Pour créer ou rejoindre l'annuaire de votre entreprise : <a href='mailto:contact@wingzy.com'>contactez-nous.</a>",
     "errorPage.organisationForbidden": "Vous n'avez pas accès à cette organisation. Veuillez demander un lien d'invitation ou <a href='mailto:contact@wingzy.com'>contactez-nous.</a>",
     "dashboard.funnel.userAttached": "Utilisateurs",
-    "dashboard.funnel.profileCreated": "Profils",
-    "dashboard.funnel.profileCompleted": "Profils complets",
+    "dashboard.funnel.profileCreated": "Profils complets",
+    "dashboard.funnel.profileCompleted": "Profils parfaits",
     "dashboard.chart.userActive.title": "Utilisateurs actifs",
     "dashboard.chart.search.title": "Recherches",
-    "dashboard.chart.contact.title": "Mises en relation",
-    "dashboard.chart.contactByType.title": "Mises en relation",
+    "dashboard.chart.contact.title": "Contacts",
+    "dashboard.chart.contactByType.title": "Contacts",
     "users.header.profile": "Profil",
     "users.header.actions": "Actions",
     "users.header.accessDate": "Rejoint",
     "users.header.lastAccess": "Dernière action",
     "users.header.welcomedDate": "Onboard",
     "users.header.account": "Compte",
-    "users.row.completedAt": "Profil complet ({completedAtDate})",
-    "users.row.notCompleted": "Profil incomplet"
+    "users.row.completedAt": "Profil parfait ({completedAtDate})"
 }

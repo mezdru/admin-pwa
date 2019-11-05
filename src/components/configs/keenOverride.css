@@ -2,7 +2,8 @@
 font-family: "Poppins", "sans-serif";
 }
 
-.keen-dataviz .keen-dataviz-title {
+.keen-dataviz .keen-dataviz-title, .keen-dataviz .text-label {
   font-size: 1.6rem;
+  font-weight: 500;
   color: #2b2d3c;
 }

@@ -45,8 +45,8 @@
   "welcome.page.subtitle": "Wingzy is the smart directory for your smart company.<br/> To create or join your company directory: <a href='mailto:contact@wingzy.com'>contact us.</a>",
   "errorPage.organisationForbidden": "You haven't access to this organisation. Please, ask someone for an invitation link or <a href='mailto:contact@wingzy.com'>contact us.</a>",
   "dashboard.funnel.userAttached": "Users",
-  "dashboard.funnel.profileCreated": "Profiles",
-  "dashboard.funnel.profileCompleted": "Completed profiles",
+  "dashboard.funnel.profileCreated": "Completed profiles",
+  "dashboard.funnel.profileCompleted": "Perfect profiles",
   "dashboard.chart.userActive.title": "Active Users",
   "dashboard.chart.search.title": "Searches",
   "dashboard.chart.contact.title": "Contacts",
@@ -57,8 +57,7 @@
   "users.header.lastAccess": "Last action",
   "users.header.welcomedDate": "Onboard",
   "users.header.account": "Account",
-  "users.row.completedAt": "Profile complete ({completedAtDate})",
-  "users.row.notCompleted": "Profile incompleted"
+  "users.row.completedAt": "Perfect profile ({completedAtDate})"
 
 }
 
