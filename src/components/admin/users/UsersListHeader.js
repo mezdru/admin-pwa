@@ -27,7 +27,7 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
             onClick={(e) => handleRequestSort(e, 'oar.welcomed_date')}
             style={{ height: '1.3rem', width: '1.3rem' }}
           >
-            <FormattedMessage id="users.header.welcomedDate" />
+            <FormattedMessage id="users.header.welcomedDate" /> 
           </TableSortLabel>
         </Typography>
       </TableCell>
