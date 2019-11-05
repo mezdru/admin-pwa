@@ -18,6 +18,12 @@ class UserStore extends Store {
     return this.currentUser && currentOrganisation && this.currentUser.orgsAndRecords.find(oar => (oar.organisation._id || oar.organisation) === currentOrganisation._id);
   }
 
+  async fetchOrgUsers(orgId) {
+    if(this.currentUser.superadmin || this.currentOrgAndRecord.admin)
+      return await super.fetchResources('?organisation='+orgId);
+    return [];
+  }
+
   async fetchCurrentUser() {
     let user = await super.fetchResource('me');
     this.currentUser = user;

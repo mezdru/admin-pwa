@@ -98,13 +98,13 @@ class HeaderDrawer extends Component {
 
                   {(undefsafe(currentUser, 'superadmin') || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
                     <>
-                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'} >
+                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'} onClick={this.props.handleDrawerClose}>
                         <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.dashboard' })} />
                       </ListItem>
-                      <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/users'} >
+                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/users'} onClick={this.props.handleDrawerClose}>
                         <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.userList' })} />
                       </ListItem>
-                      <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/data'} >
+                      <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/data'} onClick={this.props.handleDrawerClose}>
                         <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.importExport' })} />
                       </ListItem>
                     </>

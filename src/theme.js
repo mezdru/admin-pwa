@@ -75,6 +75,12 @@ export default createMuiTheme({
         color: '#555555'
       }
     },
+    MuiTableSortLabel: {
+      icon: {
+        height: '1.3rem !important',
+        width: '1.3rem !important'
+      }
+    },
     // Avatar
     MuiAvatar: {
       img: {
@@ -84,7 +90,7 @@ export default createMuiTheme({
     //Buttons
     MuiButton: {
       root: {
-        height: "56px",
+        // height: "56px",
         fontWeight: "600",
         transition: 'all 250ms',
         padding: '8px 24px',
