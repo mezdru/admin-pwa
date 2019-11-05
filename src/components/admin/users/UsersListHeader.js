@@ -5,10 +5,10 @@ import { FormattedMessage } from 'react-intl';
 export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
   <TableHead>
     <TableRow>
-      <TableCell align="left"><Typography variant="h3"><FormattedMessage id="users.header.profile" /></Typography></TableCell>
-      <TableCell align="left"><Typography variant="h3"><FormattedMessage id="users.header.account" /></Typography></TableCell>
+      <TableCell align="left"><Typography variant="h4"><FormattedMessage id="users.header.profile" /></Typography></TableCell>
+      <TableCell align="left"><Typography variant="h4"><FormattedMessage id="users.header.account" /></Typography></TableCell>
       <TableCell align="left" sortDirection={orderBy === 'oar.created' ? order : false}>
-        <Typography variant="h3">
+        <Typography variant="h4">
           <TableSortLabel
             active={(orderBy === 'oar.created' ? true : false)}
             direction={order}
@@ -20,7 +20,7 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
         </Typography>
       </TableCell>
       <TableCell align="left" sortDirection={orderBy === 'oar.welcomed_date' ? order : false}>
-        <Typography variant="h3">
+        <Typography variant="h4">
           <TableSortLabel
             active={(orderBy === 'oar.welcomed_date' ? true : false)}
             direction={order}
@@ -32,7 +32,7 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
         </Typography>
       </TableCell>
       <TableCell align="left" sortDirection={orderBy === 'last_login' ? order : false}>
-        <Typography variant="h3">
+        <Typography variant="h4">
           <TableSortLabel
             active={(orderBy === 'last_login' ? true : false)}
             direction={order}
@@ -44,7 +44,7 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
         </Typography>
       </TableCell>
       <TableCell align="left">
-        <Typography variant="h3">
+        <Typography variant="h4">
           <FormattedMessage id="users.header.actions" />
         </Typography>
       </TableCell>
