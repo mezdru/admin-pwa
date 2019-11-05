@@ -34,8 +34,8 @@
     "menu.drawer.invitation.infoUrl": "Ce lien donne acces à votre Wingzy, il restera valable pendant 30 jours.",
     "menu.drawer.locale": "Langue",
     "menu.drawer.admin.dashboard": "Tableau de bord",
-    "menu.drawer.admin.userList": "Liste des utilisateurs",
-    "menu.drawer.admin.importExport": "Import / Export",
+    "menu.drawer.admin.userList": "Gestion des utilisateurs",
+    "menu.drawer.admin.importExport": "Import",
     "errorPage.emailNotValidated": "Votre adresse mail n'a pas encore été validée. Nous vous avons renvoyé un mail de confirmation à l'adresse : <strong>{email}</strong>",
     "errorPage.emailNotValidated.title": "Vous devez valider votre adresse email pour continuer",
     "errorPage.organisationNotFound": "Nous ne connaissons pas l'organisation (<strong>{orgTag}</strong>) que vous recherchez. <a href='{newOrgLink}'>Cliquez ici pour créer le Wingzy de {orgTag}</a>",
@@ -51,5 +51,13 @@
     "dashboard.chart.userActive.title": "Utilisateurs actifs",
     "dashboard.chart.search.title": "Recherches",
     "dashboard.chart.contact.title": "Mises en relation",
-    "dashboard.chart.contactByType.title": "Mises en relation"
+    "dashboard.chart.contactByType.title": "Mises en relation",
+    "users.header.profile": "Profil",
+    "users.header.actions": "Actions",
+    "users.header.accessDate": "Rejoint",
+    "users.header.lastAccess": "Dernière action",
+    "users.header.welcomedDate": "Onboard",
+    "users.header.account": "Compte",
+    "users.row.completedAt": "Profil complet ({completedAtDate})",
+    "users.row.notCompleted": "Profil incomplet"
 }

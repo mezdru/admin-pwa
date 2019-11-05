@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from '../components/utils/container/Card';
-import { Grid, withStyles, Typography, Table, TableCell, TableRow, TableHead, TableBody, TablePagination, TableSortLabel } from '@material-ui/core';
+import { Grid, withStyles, Typography, Table, TableCell, TableRow, TableBody, TablePagination, Button } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
-import MiniProfileCard from '../components/utils/container/MiniProfileCard';
-import undefsafe from 'undefsafe';
+import UsersListHeader from '../components/admin/users/UsersListHeader';
+import UsersListRow from '../components/admin/users/UsersListRow';
+import urlService from '../services/url.service';
+import { FormattedMessage } from 'react-intl';
 
 var MomentConfigs = require('../components/configs/moment.conf');
 MomentConfigs.setMomentFr();
@@ -23,11 +24,18 @@ const style = {
   },
   table: {
     minWidth: 775,
+    marginTop: 64
   },
   emailContainer: {
     overflowWrap: 'break-word',
     width: '150px',
-    minWidth: '15vw'
+    minWidth: '13vw'
+  },
+  usersActionContainer: {
+    float: 'right',
+    '& > *': {
+      marginLeft: 16
+    }
   }
 }
 
@@ -36,7 +44,7 @@ class UsersListPage extends React.Component {
   state = {
     users: [],
     page: 0,
-    rowsPerPage: 10,
+    rowsPerPage: 5,
     orderBy: 'last_login',
     order: 'desc'
   }
@@ -56,9 +64,15 @@ class UsersListPage extends React.Component {
 
   descDate(a, b, orderBy) {
     let aVal, bVal;
-    if(orderBy === 'last_login') {
+    if (orderBy === 'last_login') {
       aVal = (new Date(a[orderBy] || a['created'])).getTime();
       bVal = (new Date(b[orderBy] || b['created'])).getTime();
+    } else if (orderBy === 'oar.created') {
+      aVal = (new Date(a.orgsAndRecords[0].created)).getTime();
+      bVal = (new Date(b.orgsAndRecords[0].created)).getTime();
+    } else if (orderBy === 'oar.welcomed_date') {
+      aVal = (new Date(a.orgsAndRecords[0].welcomed_date)).getTime();
+      bVal = (new Date(b.orgsAndRecords[0].welcomed_date)).getTime();
     } else {
       aVal = (new Date(a[orderBy])).getTime();
       bVal = (new Date(b[orderBy])).getTime();
@@ -104,49 +118,25 @@ class UsersListPage extends React.Component {
       <Grid container className={classes.root} >
         <Grid item xs={12} >
           <Card style={{ overflowX: 'auto', }} >
-            <Typography variant="h1">
-              Liste des utilisateurs
+            <Typography variant="h1" style={{ float: 'left' }}>
+              <FormattedMessage id="menu.drawer.admin.userList" />
             </Typography>
+            <div className={classes.usersActionContainer} >
+              <Button color="secondary" component="a" href={urlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/organisation/export/csv', this.props.orgStore.currentOrganisation.tag)}>
+                Export to CSV
+              </Button>
+              <Button color="secondary" component="a" href={urlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/organisation/export/excel', this.props.orgStore.currentOrganisation.tag)}>
+                Export to Excel
+              </Button>
+            </div>
+
             <Table className={classes.table} aria-label="users list">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="left">Profile</TableCell>
-                  <TableCell align="left">Email</TableCell>
-                  <TableCell align="left">Created</TableCell>
-                  <TableCell align="left" sortDirection={orderBy === 'last_login' ? order : false}>
-                    <TableSortLabel
-                      active={true}
-                      direction={order}
-                      onClick={(e) => this.handleRequestSort(e, 'last_login')}
-                    >
-                      Last login
-                    </TableSortLabel>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
+              <UsersListHeader handleRequestSort={this.handleRequestSort} orderBy={orderBy} order={order} />
               <TableBody>
                 {this.stableSort(users, this.getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((user, index) => {
-                    return (
-                      <TableRow key={user._id}>
-                        <TableCell align="left" >
-                          <MiniProfileCard
-                            pictureUrl={undefsafe(user.orgsAndRecords[0], 'record.picture.url')}
-                            name={undefsafe(user.orgsAndRecords[0], 'record.name')}
-                            recordTag={undefsafe(user.orgsAndRecords[0], 'record.tag')}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <div className={classes.emailContainer}>
-                            {user.email.value}
-                          </div>
-                        </TableCell>
-                        <TableCell>{moment(user.created).calendar()}</TableCell>
-                        <TableCell>{moment(user.last_login || user.created).calendar()}</TableCell>
-                      </TableRow>
-                    );
-                  })}
+                  .map((user, index) => <UsersListRow classes={classes} user={user} key={user._id} />
+                  )}
                 {emptyRows > 0 && (
                   <TableRow style={{ height: 72.8 * emptyRows }}>
                     <TableCell colSpan={6} />
