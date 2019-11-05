@@ -9,7 +9,7 @@ const API_ROOT_AUTH = process.env.REACT_APP_API_ROOT_AUTH;
 const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const handleErrors = err => {
-  if(err) LogRocket.error(err);
+  if (err) LogRocket.error(err);
 
   if (err && err.response && err.response.status === 401) {
     authStore.logout();
@@ -108,8 +108,8 @@ let validateToken = () => {
         .timeout({
           response: 30000,
         })
-        .end( (err) => {
-          if(err) LogRocket.error("The refresh token exchange has not worked.");
+        .end((err) => {
+          if (err) LogRocket.error("The refresh token exchange has not worked.");
           handleErrors(err);
         })
         .then((response) => {
@@ -188,6 +188,10 @@ const User = {
           welcomed: true
         }
       }
+    ),
+  ban: (query) =>
+    requests.put(
+      API_ROOT + '/' + commonStore.locale + '/api/users' + query,
     ),
   put: (orgId, userId, user) =>
     requests.put(
@@ -294,7 +298,7 @@ const Invitation = {
 }
 
 const Clap = {
-  post: (clap) => 
+  post: (clap) =>
     requests.post(
       process.env.REACT_APP_API_ROOT_RECOGNIZE + '/api/claps',
       {
@@ -305,7 +309,7 @@ const Clap = {
     requests.get(
       process.env.REACT_APP_API_ROOT_RECOGNIZE + '/api/claps/record/' + recordId + '/count',
     ),
-  getClapHistory: (recordId) => 
+  getClapHistory: (recordId) =>
     requests.get(
       process.env.REACT_APP_API_ROOT_RECOGNIZE + '/api/claps/record/' + recordId
     )
@@ -322,10 +326,10 @@ const HelpRequest = {
 }
 
 const ConnectionLog = {
-    get: () => 
-      requests.get(
-        process.env.REACT_APP_API_ROOT_AUTH + '/api/connectionLogs'
-      )
+  get: () =>
+    requests.get(
+      process.env.REACT_APP_API_ROOT_AUTH + '/api/connectionLogs'
+    )
 }
 
 export default {
