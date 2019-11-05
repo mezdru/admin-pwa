@@ -63,7 +63,7 @@ class Card extends React.Component {
     }
 
     return (
-      <a href={UrlService.getFrontflipUrl('/' + recordTag, this.props.orgStore.currentOrganisation.tag, this.props.commonStore.locale)} style={{ position: 'relative' }} >
+      <a href={UrlService.getFrontflipUrl('/' + recordTag, this.props.orgStore.currentOrganisation.tag, this.props.commonStore.locale)} style={{ position: 'relative' }}  target="_blank">
         <div className={classes.root} >
           <img src={pictureUrl || defaultPicture} alt="Profile picture" className={classes.picture} />
           <div className={classes.name} >{this.formatName(name)}</div>
