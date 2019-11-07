@@ -4,7 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import GeneralSetup from '../components/admin/setup/GeneralSetup';
 import { withStyles, Grid, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import ErrorBoundary from '../components/utils/errors/ErrorBoundary';
+import OnboardSettings from '../components/admin/setup/OnboardSettings';
 const style = {
   root: {
     width: '100%',
@@ -41,7 +42,7 @@ class SetupPage extends React.Component {
               <FormattedMessage id="menu.drawer.admin.administration" />
             </Typography> */}
 
-            <ExpansionPanel expanded={activePanel === 'GeneralSettings'} onChange={this.handleChangePanel('GeneralSettings')}>
+            <ExpansionPanel expanded={activePanel === 'GeneralSettings'} onChange={this.handleChangePanel('GeneralSettings')} >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -51,21 +52,23 @@ class SetupPage extends React.Component {
                 {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <GeneralSetup activePanel={activePanel} handleChangePanel={this.handleChangePanel} />
+                <ErrorBoundary>
+                  <GeneralSetup activePanel={activePanel} handleChangePanel={this.handleChangePanel} />
+                </ErrorBoundary>
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
-            <ExpansionPanel expanded={activePanel === 'FeaturedFamilies'} onChange={this.handleChangePanel('FeaturedFamilies')}>
+            <ExpansionPanel expanded={activePanel === 'FeaturedFamilies'} onChange={this.handleChangePanel('FeaturedFamilies')} >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
-                <Typography variant="h2" className={classes.heading}>Onboard settings</Typography>
+                <Typography variant="h2" className={classes.heading}>Onboard</Typography>
                 {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                Wings
+                <OnboardSettings />
               </ExpansionPanelDetails>
             </ExpansionPanel>
 

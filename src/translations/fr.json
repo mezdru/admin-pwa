@@ -59,5 +59,9 @@
     "users.header.lastAccess": "Dernière action",
     "users.header.welcomedDate": "Onboard",
     "users.header.account": "Compte",
-    "users.row.completedAt": "Profil parfait ({completedAtDate})"
+    "users.row.completedAt": "Profil parfait ({completedAtDate})",
+    "settings.onboard.steps.intro": "Qui suis-je ?",
+    "settings.onboard.steps.contacts": "Comment me joindre ?",
+    "settings.onboard.steps.wings": "Mes autres compétences, talents, énergies...",
+    "settings.onboard.update": "Notre onboarding est entièrement personnalisable !<br/> Vous voulez modifier, ajouter, supprimer des étapes ?<br/> <a href='mailto:contact@wingzy.com'>Contactez-nous !</a>"
 }

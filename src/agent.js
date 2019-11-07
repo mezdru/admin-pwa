@@ -242,7 +242,14 @@ const Organisation = {
   get: (query) =>
     requests.get(
       API_ROOT + '/' + commonStore.locale + '/api/organisations' + query
-    )
+    ),
+  put: (useless, orgId, org) =>
+    requests.put(
+      API_ROOT + '/' + commonStore.locale + '/api/organisations/' + orgId,
+      {
+        organisation: org
+      }
+    ),
 }
 
 /**

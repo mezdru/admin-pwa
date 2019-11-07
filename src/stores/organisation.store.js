@@ -30,6 +30,25 @@ class orgStore extends Store {
     return org;
   }
 
+  async updateOrganisation(orgId, arrayOfFields, org) {
+    let orgToUpdate = this.buildRecordToUpdate(arrayOfFields, org);
+    let orgUpdated = await super.updateResource(orgId, orgToUpdate);
+    this.addOrg(orgUpdated);
+    return orgUpdated;
+  }
+
+  buildRecordToUpdate(arrayOfFields, record) {
+    let recordToUpdate = {};
+    if (!arrayOfFields) {
+      recordToUpdate = record;
+    } else {
+      arrayOfFields.forEach(field => {
+        recordToUpdate[field] = record[field];
+      });
+    }
+    return recordToUpdate;
+  }
+
   addOrg(inOrg) {
     let index = this.organisations.findIndex(org => JSON.stringify(org._id) === JSON.stringify(inOrg._id));
     if (index > -1) {
@@ -85,37 +104,6 @@ class orgStore extends Store {
     this.addAlgoliaKey(algoliaKey.value, orgId, new Date(algoliaKey.valid_until));
     return algoliaKey.value;
   }
-
-  // getAlgoliaKey(organisation, forceUpdate) {
-  //   this.inProgress = true;
-  //   this.errors = null;
-
-  //   if ((commonStore.algoliaKey || commonStore.getCookie('algoliaKey')) && !forceUpdate) return Promise.resolve(commonStore.algoliaKey);
-  //   if (commonStore.algoliaKeyOrganisation === organisation.tag && !forceUpdate) return Promise.resolve(commonStore.algoliaKey);
-
-  //   return agent.Organisation.getAlgoliaKey(organisation._id, organisation.public)
-  //     .then(res => {
-  //       if (res) {
-  //         commonStore.setAlgoliaKey(res.data, organisation.tag);
-  //         return res.data.value;
-  //       }
-  //       return null;
-  //     })
-  //     .catch(action((err) => {
-  //       this.errors = err.response && err.response.body && err.response.body.errors;
-  //       throw err;
-  //     }))
-  //     .finally(action(() => { this.inProgress = false; }));
-  // }
-
-  // isKeyStillValid() {
-  //   if (commonStore.algoliaKey && commonStore.algoliaKeyValidity) {
-  //     let valid_until_date = new Date(parseInt(commonStore.algoliaKeyValidity));
-  //     return (((new Date()).getTime() + 3600000) < valid_until_date.getTime());
-  //   }
-  //   return false;
-  // }
-
 }
 
 decorate(orgStore, {
@@ -125,6 +113,7 @@ decorate(orgStore, {
   algoliaKeys: observable,
   fetchForPublic: action,
   fetchOrganisation: action,
+  updateOrganisation: action,
   fetchAlgoliaKey: action,
   getOrFetchOrganisation: action
 });
