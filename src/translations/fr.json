@@ -34,6 +34,7 @@
     "menu.drawer.invitation.infoUrl": "Ce lien donne acces à votre Wingzy, il restera valable pendant 30 jours.",
     "menu.drawer.locale": "Langue",
     "menu.drawer.admin.dashboard": "Tableau de bord",
+    "menu.drawer.admin.setup": "Configuration",
     "menu.drawer.admin.userList": "Gestion des utilisateurs",
     "menu.drawer.admin.importExport": "Import",
     "errorPage.emailNotValidated": "Votre adresse mail n'a pas encore été validée. Nous vous avons renvoyé un mail de confirmation à l'adresse : <strong>{email}</strong>",

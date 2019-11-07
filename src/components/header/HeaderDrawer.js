@@ -98,6 +98,9 @@ class HeaderDrawer extends Component {
 
                   {(undefsafe(currentUser, 'superadmin') || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
                     <>
+                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/setup'} onClick={this.props.handleDrawerClose}>
+                        <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.setup' })} />
+                      </ListItem>
                       <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'} onClick={this.props.handleDrawerClose}>
                         <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.dashboard' })} />
                       </ListItem>
