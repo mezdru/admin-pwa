@@ -38,9 +38,6 @@ class SetupPage extends React.Component {
       <Grid container className={classes.root} >
         <Grid item xs={12} >
           <Card style={{ overflowX: 'auto', background: 'transparent', boxShadow: 'none', padding: 0 }} >
-            {/* <Typography variant="h1" style={{ fontSize: '1.6rem', fontWeight: 500 }}>
-              <FormattedMessage id="menu.drawer.admin.administration" />
-            </Typography> */}
 
             <ExpansionPanel expanded={activePanel === 'GeneralSettings'} onChange={this.handleChangePanel('GeneralSettings')} >
               <ExpansionPanelSummary

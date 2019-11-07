@@ -1,10 +1,7 @@
 import React from 'react';
-import { withStyles, Grid, Typography, TextField, Button, Stepper, Step, StepLabel } from '@material-ui/core';
+import { withStyles, Grid, Typography, Stepper, Step, StepLabel } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-import { FormattedMessage, injectIntl, FormattedHTMLMessage } from 'react-intl';
-
-const Entities = require('html-entities').XmlEntities;
-const entities = new Entities();
+import { injectIntl, FormattedHTMLMessage } from 'react-intl';
 
 const style = theme => ({
 	root: {
@@ -85,6 +82,6 @@ class OnboardSettings extends React.Component {
 	}
 }
 
-export default inject('orgStore', 'userStore', 'commonStore')(observer(
+export default inject('orgStore', 'commonStore')(observer(
 	withStyles(style)(injectIntl(OnboardSettings))
 ))
