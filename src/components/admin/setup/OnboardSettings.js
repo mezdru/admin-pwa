@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles, Grid, Typography, Stepper, Step, StepLabel } from '@material-ui/core';
+import { withStyles, Grid, Typography, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-import { injectIntl, FormattedHTMLMessage } from 'react-intl';
+import { injectIntl, FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 
 const style = theme => ({
 	root: {
@@ -13,13 +13,6 @@ const style = theme => ({
 	},
 	cta: {
 		textAlign: 'center',
-		'& a': {
-			color: theme.palette.secondary.main,
-			fontWeight: 'bold',
-			'&:hover': {
-				color: theme.palette.secondary.dark
-			}
-		}
 	}
 });
 
@@ -43,7 +36,6 @@ class OnboardSettings extends React.Component {
 		}
 		else {
 			let steps = [];
-			console.log(JSON.parse(JSON.stringify(org)))
 			org.onboardSteps.forEach(step => {
 				if (step.charAt(0) === '#') {
 					let stepWings = org.featuredWingsFamily.find(f => f.tag === step);
@@ -76,6 +68,11 @@ class OnboardSettings extends React.Component {
 					<Typography variant="body1">
 						<FormattedHTMLMessage id="settings.onboard.update" />
 					</Typography>
+				</Grid>
+				<Grid item xs={12}  className={classes.cta}>
+					<Button color="secondary" component="a" href="mailto:contact@wingzy.com" target="_blank" >
+						<FormattedMessage id="settings.onboard.contact" />
+					</Button>
 				</Grid>
 			</Grid>
 		);

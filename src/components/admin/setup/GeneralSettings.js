@@ -25,7 +25,7 @@ const style = {
   }
 };
 
-class GeneralSetup extends React.Component {
+class GeneralSettings extends React.Component {
 
   handleSave = async () => {
     // save name / tag / intro / pictures?
@@ -35,7 +35,7 @@ class GeneralSetup extends React.Component {
   }
 
   handleChange = (e, field) => {
-    if(field !== 'intro') {
+    if (field !== 'intro') {
       this.props.orgStore.currentOrganisation[field] = e.target.value;
     } else {
       this.props.orgStore.currentOrganisation.intro = this.props.orgStore.currentOrganisation.intro || {};
@@ -62,23 +62,24 @@ class GeneralSetup extends React.Component {
             variant="outlined"
           />
         </Grid>
+        {currentUser.superadmin && (
+          <Grid item xs={12}>
+            <TextField
+              className={classes.textField}
+              label={"Organisation tag"}
+              className={classes.textField}
+              margin="normal"
+              value={entities.decode(currentOrganisation.tag)}
+              onChange={(e) => this.handleChange(e, 'tag')}
+              helperText={"The tag of your organisation, which is used in URL. The tag is unique."}
+              variant="outlined"
+            />
+          </Grid>
+        )}
         <Grid item xs={12}>
           <TextField
             className={classes.textField}
-            disabled={!currentUser.superadmin}
-            label={"Organisation tag"}
-            className={classes.textField}
-            margin="normal"
-            value={entities.decode(currentOrganisation.tag)}
-            onChange={(e) => this.handleChange(e, 'tag')}
-            helperText={"The tag of your organisation, which is used in URL. The tag is unique."}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            className={classes.textField}
-            label={"Organisation introduction"}
+            label={"Organisation tagline"}
             className={classes.textField}
             margin="normal"
             value={entities.decode(currentOrganisation.intro[commonStore.locale])}
@@ -98,5 +99,5 @@ class GeneralSetup extends React.Component {
 }
 
 export default inject('orgStore', 'userStore', 'commonStore')(observer(
-  withStyles(style)(GeneralSetup)
+  withStyles(style)(GeneralSettings)
 ))
