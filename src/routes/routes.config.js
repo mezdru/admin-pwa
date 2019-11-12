@@ -6,6 +6,7 @@ const UsersListPage = React.lazy(() => import('../pages/UsersListPage'));
 const ErrorPage = React.lazy(() => import('../pages/ErrorPage'));
 const RoutesWithLocale = React.lazy(() => import('./RoutesWithLocale'));
 const RoutesWithOrgTag = React.lazy(() => import('./RoutesWithOrgTag'));
+const SetupPage = React.lazy(() => import('../pages/SetupPage'));
 
 export const routes = [
   {
@@ -29,6 +30,11 @@ export const routes = [
           {
             path: "/:locale(en|fr|en-UK)/:orgTag/users",
             component: UsersListPage,
+            exact: true
+          },
+          {
+            path: "/:locale(en|fr|en-UK)/:orgTag/setup",
+            component: SetupPage,
             exact: true
           },
           {

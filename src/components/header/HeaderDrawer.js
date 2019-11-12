@@ -107,6 +107,9 @@ class HeaderDrawer extends Component {
                       <ListItem button disabled component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/data'} onClick={this.props.handleDrawerClose}>
                         <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.importExport' })} />
                       </ListItem>
+                      <ListItem button component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/setup'} onClick={this.props.handleDrawerClose}>
+                        <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.admin.setup' })} />
+                      </ListItem>
                     </>
                   )}
 

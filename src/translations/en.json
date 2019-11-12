@@ -34,6 +34,7 @@
   "menu.drawer.invitation.infoUrl": "This link give access to your Wingzy, it will remain available for 30 days",
   "menu.drawer.locale": "Language",
   "menu.drawer.admin.dashboard": "Dashboard",
+  "menu.drawer.admin.setup": "Setup",
   "menu.drawer.admin.userList": "Users Management",
   "menu.drawer.admin.importExport": "Import",
   "errorPage.emailNotValidated": "Your email address isn't validated yet. We just sent you an email at <strong>{email}</strong> to confirm your address, check your inbox...",
@@ -44,7 +45,7 @@
   "welcome.page.title": "We don't yet know your company",
   "welcome.page.subtitle": "Wingzy is the smart directory for your smart company.<br/> To create or join your company directory: <a href='mailto:contact@wingzy.com'>contact us.</a>",
   "errorPage.organisationForbidden": "You haven't access to this organisation. Please, ask someone for an invitation link or <a href='mailto:contact@wingzy.com'>contact us.</a>",
-  "dashboard.funnel.userAttached": "Users",
+  "dashboard.funnel.userAttached": "Members",
   "dashboard.funnel.profileCreated": "Completed profiles",
   "dashboard.funnel.profileCompleted": "Perfect profiles",
   "dashboard.chart.userActive.title": "Active Users",
@@ -57,7 +58,14 @@
   "users.header.lastAccess": "Last action",
   "users.header.welcomedDate": "Onboard",
   "users.header.account": "Account",
-  "users.row.completedAt": "Perfect profile ({completedAtDate})"
-
+  "users.row.completedAt": "Perfect profile ({completedAtDate})",
+  "settings.onboard.steps.intro": "Who am I?",
+  "settings.onboard.steps.contacts": "How to reach me",
+  "settings.onboard.steps.wings": "My other skills, talents & energies...",
+  "settings.onboard.update": "Notre onboarding est entièrement personnalisable !<br/> Vous voulez modifier, ajouter, supprimer des étapes ?",
+  "settings.onboard.contact": "Contact us!",
+  "settings.general.title": "General settings",
+  "settings.onboard.title": "Onboard management",
+  "settings.connection.title": "Access management"
 }
 

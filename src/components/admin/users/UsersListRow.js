@@ -22,7 +22,7 @@ export default React.memo(({ user, classes, onDelete, ...props }) =>
     </TableCell>
     <TableCell>{moment(user.orgsAndRecords[0].created).calendar()}</TableCell>
     <TableCell>{user.orgsAndRecords[0].welcomed_date && moment(user.orgsAndRecords[0].welcomed_date).calendar()}</TableCell>
-    <TableCell>{moment(user.last_login || user.created).calendar()}</TableCell>
+    <TableCell>{moment(user.last_access || user.last_login || user.created).calendar()}</TableCell>
     <TableCell>
       <RemoveAccountAction userId={user._id} recordId={undefsafe(user.orgsAndRecords[0].record, '_id')} onDelete={onDelete} />
     </TableCell>

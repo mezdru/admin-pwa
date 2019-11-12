@@ -34,6 +34,7 @@
     "menu.drawer.invitation.infoUrl": "Ce lien donne acces à votre Wingzy, il restera valable pendant 30 jours.",
     "menu.drawer.locale": "Langue",
     "menu.drawer.admin.dashboard": "Tableau de bord",
+    "menu.drawer.admin.setup": "Configuration",
     "menu.drawer.admin.userList": "Gestion des utilisateurs",
     "menu.drawer.admin.importExport": "Import",
     "errorPage.emailNotValidated": "Votre adresse mail n'a pas encore été validée. Nous vous avons renvoyé un mail de confirmation à l'adresse : <strong>{email}</strong>",
@@ -45,7 +46,7 @@
     "welcome.page.title": "Nous ne connaissons pas encore votre entreprise",
     "welcome.page.subtitle": "Wingzy c'est l'annuaire intelligent de votre entreprise.<br/> Pour créer ou rejoindre l'annuaire de votre entreprise : <a href='mailto:contact@wingzy.com'>contactez-nous.</a>",
     "errorPage.organisationForbidden": "Vous n'avez pas accès à cette organisation. Veuillez demander un lien d'invitation ou <a href='mailto:contact@wingzy.com'>contactez-nous.</a>",
-    "dashboard.funnel.userAttached": "Utilisateurs",
+    "dashboard.funnel.userAttached": "Membres",
     "dashboard.funnel.profileCreated": "Profils complets",
     "dashboard.funnel.profileCompleted": "Profils parfaits",
     "dashboard.chart.userActive.title": "Utilisateurs actifs",
@@ -58,5 +59,13 @@
     "users.header.lastAccess": "Dernière action",
     "users.header.welcomedDate": "Onboard",
     "users.header.account": "Compte",
-    "users.row.completedAt": "Profil parfait ({completedAtDate})"
+    "users.row.completedAt": "Profil parfait ({completedAtDate})",
+    "settings.onboard.steps.intro": "Qui suis-je ?",
+    "settings.onboard.steps.contacts": "Comment me joindre ?",
+    "settings.onboard.steps.wings": "Mes autres compétences, talents, énergies...",
+    "settings.onboard.update": "Notre onboarding est entièrement personnalisable !<br/> Vous voulez modifier, ajouter, supprimer des étapes ?",
+    "settings.onboard.contact": "Contactez nous !",
+    "settings.general.title": "Paramètres généraux",
+    "settings.onboard.title": "Gestion de l'onboard",
+    "settings.connection.title": "Gestion des accès"
 }
