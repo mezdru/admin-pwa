@@ -6,33 +6,48 @@ import { CircularProgress } from '@material-ui/core';
 
 class Graph extends React.Component {
 
+  getYValues = (initialValues) => {
+    let initValues = initialValues.map(elt => elt.value);
+
+    let values = [0];
+    let max = Math.max(...initValues);
+    values.push(Math.round(max*0.25));
+    values.push(Math.round(max*0.50));
+    values.push(Math.round(max));
+    return values;
+  }
+
   loadDataviz = () => {
-    const chart = new KeenDataviz({
-      container: '#' + this.props.graphId, // querySelector
-      title: this.props.title,
-      type: this.props.type,
-      grid: {
-        x: {
-          show: false
-        },
-        y: {
-          show: false
-        }
-      },
-      zoom: {
-        enabled: true
-      },
-      point: { "show": 2.5 },
-    });
     this.props.keenStore.readClient
       .query(this.props.keenQuery)
       .then((results) => {
+
+        const chart = new KeenDataviz({
+          container: '#' + this.props.graphId, // querySelector
+          title: this.props.title,
+          type: this.props.type,
+          grid: { x: { show: false }, y: { show: false } },
+          axis: {
+            y: {
+              tick: {
+                values: this.getYValues(results.result)
+                // count: 4,
+                // format: (nb) => Math.round(nb * 10) / 10
+              }
+            }
+          },
+          zoom: {
+            enabled: true
+          },
+          point: { "show": 2.5 },
+        });
+
         chart
           .render(results);
       })
       .catch((error) => {
-        chart
-          .message(error.message);
+        // chart
+        //   .message(error.message);
       });
   }
 
