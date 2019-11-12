@@ -65,8 +65,8 @@ class UsersListPage extends React.Component {
   descDate(a, b, orderBy) {
     let aVal, bVal;
     if (orderBy === 'last_login') {
-      aVal = (new Date(a[orderBy] || a['created'])).getTime();
-      bVal = (new Date(b[orderBy] || b['created'])).getTime();
+      aVal = (new Date(a['last_access'] || a[orderBy] || a['created'])).getTime();
+      bVal = (new Date(b['last_access'] || b[orderBy] || b['created'])).getTime();
     } else if (orderBy === 'oar.created') {
       aVal = (new Date(a.orgsAndRecords[0].created)).getTime();
       bVal = (new Date(b.orgsAndRecords[0].created)).getTime();
