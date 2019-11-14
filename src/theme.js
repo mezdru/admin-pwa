@@ -41,6 +41,11 @@ export default createMuiTheme({
         marginTop: -8
       }
     },
+    MuiTableCell: {
+      body: {
+        fontSize: '0.8rem'
+      }
+    },
     MuiTypography: {
       root: {
         color: palette.primary.dark

@@ -31,7 +31,10 @@ const style = theme => ({
   name: {
     float: 'right',
     marginLeft: 40,
-    width: 'calc(100% - 40px)'
+    width: 'calc(100% - 40px)',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    position: 'relative'
   },
   badge: {
     position: 'absolute',
@@ -63,7 +66,7 @@ class Card extends React.Component {
     }
 
     return (
-      <a href={UrlService.getFrontflipUrl('/' + recordTag, this.props.orgStore.currentOrganisation.tag, this.props.commonStore.locale)} style={{ position: 'relative' }}  target="_blank">
+      <a href={UrlService.getFrontflipUrl('/' + recordTag, this.props.orgStore.currentOrganisation.tag, this.props.commonStore.locale)} style={{ position: 'relative' }} target="_blank">
         <div className={classes.root} >
           <img src={pictureUrl || defaultPicture} alt="Profile picture" className={classes.picture} />
           <div className={classes.name} >{this.formatName(name)}</div>
