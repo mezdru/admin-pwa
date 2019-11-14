@@ -47,7 +47,7 @@
   "errorPage.organisationForbidden": "You haven't access to this organisation. Please, ask someone for an invitation link or <a href='mailto:contact@wingzy.com'>contact us.</a>",
   "dashboard.funnel.userAttached": "Members",
   "dashboard.funnel.profileCreated": "Completed profiles",
-  "dashboard.funnel.profileCompleted": "Perfect profiles",
+  "dashboard.funnel.profileCompleted": "Perfect profiles ⭐",
   "dashboard.chart.userActive.title": "Active Users",
   "dashboard.chart.search.title": "Searches",
   "dashboard.chart.contact.title": "Contacts",
