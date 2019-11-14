@@ -44,9 +44,6 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
         </Typography>
       </TableCell>
       <TableCell align="left">
-        <Typography variant="h4">
-          <FormattedMessage id="users.header.actions" />
-        </Typography>
       </TableCell>
     </TableRow>
   </TableHead>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import { Delete, Error, CheckCircleOutline } from '@material-ui/icons';
 import { observer, inject } from 'mobx-react';
 import { green } from '@material-ui/core/colors';
+import { injectIntl } from 'react-intl';
 
 
 class RemoveAccountAction extends React.Component {
@@ -28,13 +29,15 @@ class RemoveAccountAction extends React.Component {
   render() {
     const { error, success } = this.state;
     return (
-      <IconButton aria-label="delete" onClick={this.handleRemoveAccount} disabled={error || success} >
-        {!error && !success && (<Delete />)}
-        {error && (<Error style={{ color: 'red' }} />)}
-        {!error && success && (<CheckCircleOutline style={{ color: green[600] }} />)}
-      </IconButton>
+      <Tooltip title={this.props.intl.formatMessage({ id: 'users.action.remove.tooltip' })} placement="bottom">
+        <IconButton aria-label="delete" onClick={this.handleRemoveAccount} disabled={error || success} >
+          {!error && !success && (<Delete />)}
+          {error && (<Error style={{ color: 'red' }} />)}
+          {!error && success && (<CheckCircleOutline style={{ color: green[600] }} />)}
+        </IconButton>
+      </Tooltip>
     )
   }
 }
 
-export default inject("orgStore", "recordStore", "userStore")(observer(RemoveAccountAction));
+export default inject("orgStore", "recordStore", "userStore")(observer( injectIntl(RemoveAccountAction)));

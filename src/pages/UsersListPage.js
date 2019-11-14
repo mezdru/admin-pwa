@@ -44,7 +44,7 @@ class UsersListPage extends React.Component {
   state = {
     users: [],
     page: 0,
-    rowsPerPage: 5,
+    rowsPerPage: 10,
     orderBy: 'last_login',
     order: 'desc'
   }
@@ -111,7 +111,7 @@ class UsersListPage extends React.Component {
 
   handleRemoveAccount = (userId) => {
     let users = this.state.users.filter(u => u._id !== userId);
-    this.setState({users: users});
+    this.setState({ users: users });
   }
 
   render() {
@@ -128,10 +128,10 @@ class UsersListPage extends React.Component {
             </Typography>
             <div className={classes.usersActionContainer} >
               <Button color="secondary" component="a" href={urlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/organisation/export/csv', this.props.orgStore.currentOrganisation.tag)}>
-                Export to CSV
+                <FormattedMessage id="users.action.export.csv" />
               </Button>
               <Button color="secondary" component="a" href={urlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/organisation/export/excel', this.props.orgStore.currentOrganisation.tag)}>
-                Export to Excel
+                <FormattedMessage id="users.action.export.excel" />
               </Button>
             </div>
 
@@ -150,7 +150,7 @@ class UsersListPage extends React.Component {
               </TableBody>
             </Table>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
+              rowsPerPageOptions={[5, 10, 25, 100]}
               component="div"
               count={users.length}
               rowsPerPage={rowsPerPage}

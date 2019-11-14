@@ -7,3 +7,10 @@ font-family: "Poppins", "sans-serif";
   font-weight: 500;
   color: #2b2d3c;
 }
+.keen-dataviz .text-main {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.keen-dataviz .text-second {
+  color: rgba(255,255,255,.85);
+}
