@@ -54,7 +54,7 @@
   "dashboard.chart.contactByType.title": "Means of contact",
   "users.header.profile": "Profile",
   "users.header.accessDate": "Member since",
-  "users.header.lastAccess": "Last action",
+  "users.header.lastAccess": "Last active",
   "users.header.welcomedDate": "Completed profile",
   "users.header.account": "Account",
   "users.row.completedAt": "Perfect profile ({completedAtDate})",
