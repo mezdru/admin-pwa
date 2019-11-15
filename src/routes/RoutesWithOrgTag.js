@@ -32,17 +32,22 @@ class RoutesWithOrgTag extends React.Component {
     })
     this.props.commonStore.setUrlParams(this.props.match);
   }
-  isAdminInOrg = () => (this.props.userStore.currentUser && (this.props.userStore.currentUser.superadmin || (this.props.userStore.currentOrgAndRecord && this.props.userStore.currentOrgAndRecord.admin)));
+  isAdminInOrg = () => 
+  (this.props.userStore.currentUser && 
+    (this.props.userStore.currentUser.superadmin || 
+      (this.props.userStore.currentOrgAndRecord && this.props.userStore.currentOrgAndRecord.admin)
+    )
+  );
   
   render() {
     const {routes} = this.props;
     const {locale} = this.props.commonStore;
     const { redirect404, render} = this.state;
-
     if(!this.props.authStore.isAuth()) return window.location.href = UrlService.getFrontflipUrl('/signin', this.props.match.params.orgTag, this.props.commonStore.locale);
-    if(!this.isAdminInOrg()) return window.location.href = UrlService.getFrontflipUrl('', this.props.match.params.orgTag, this.props.commonStore.locale);
     if(redirect404) return <Redirect to={'/' + locale + '/error/404/organisation'} push/>
     if (!render) return <CircularProgress color="secondary" style={{position: 'fixed', top: '45%', left:0, right:0, margin: 'auto'}} />;
+
+    if(!this.isAdminInOrg()) return window.location.href = UrlService.getFrontflipUrl('', this.props.match.params.orgTag, this.props.commonStore.locale);
 
     return (
       <Switch>
