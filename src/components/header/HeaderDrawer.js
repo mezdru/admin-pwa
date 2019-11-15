@@ -88,11 +88,11 @@ class HeaderDrawer extends Component {
             {(auth && undefsafe(currentOrganisation, '_id')) && (
               <React.Fragment>
                 <List className={'leftSubmenu'}>
-                  <ListItem onClick={this.props.handleDrawerClose} component={Link} to={'/' + locale + '/' + undefsafe(currentOrganisation, 'tag') + '/dashboard'}>
+                  <ListItem onClick={this.props.handleDrawerClose} component="a" href={UrlService.getFrontflipUrl('', currentOrganisation && currentOrganisation.tag, locale)} >
                     <ListItemAvatar>
                       <Logo type={'organisation'} alt={undefsafe(currentOrganisation, 'name')} className={classes.logoBorder} />
                     </ListItemAvatar>
-                    <ListItemText primary={currentOrganisation && (currentOrganisation.name || currentOrganisation.tag)}
+                    <ListItemText primary={(currentOrganisation && (currentOrganisation.name || currentOrganisation.tag)) + ' Admin'}
                       primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color: 'white', fontSize: '1rem' } }} />
                   </ListItem>
 
