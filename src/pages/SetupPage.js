@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ErrorBoundary from '../components/utils/errors/ErrorBoundary';
 import OnboardSettings from '../components/admin/setup/OnboardSettings';
 import ConnectionSettings from '../components/admin/setup/ConnectionSettings';
-const style = {
+const style = theme => ({
   root: {
     width: '100%',
     minHeight: '100vh',
@@ -18,9 +18,13 @@ const style = {
     left: 0,
     '& *': {
       transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: 16,
+      paddingTop: 64
     }
   },
-};
+});
 
 class SetupPage extends React.Component {
 
@@ -39,7 +43,7 @@ class SetupPage extends React.Component {
     return (
       <Grid container className={classes.root} >
         <Grid item xs={12} >
-          <Card style={{ overflowX: 'auto', background: 'transparent', boxShadow: 'none', padding: 0 }} >
+          <Card style={{background: 'transparent', boxShadow: 'none', padding: 0 }} >
 
             <ExpansionPanel expanded={activePanel === 'GeneralSettings'} onChange={this.handleChangePanel('GeneralSettings')} >
               <ExpansionPanelSummary
@@ -50,7 +54,7 @@ class SetupPage extends React.Component {
                 <Typography variant="h2" className={classes.heading}><FormattedMessage id="settings.general.title" /></Typography>
                 {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              <ExpansionPanelDetails style={{overflowX: 'auto'}}>
                 <ErrorBoundary>
                   <GeneralSettings activePanel={activePanel} handleChangePanel={this.handleChangePanel} />
                 </ErrorBoundary>
@@ -66,7 +70,7 @@ class SetupPage extends React.Component {
                 <Typography variant="h2" className={classes.heading}><FormattedMessage id="settings.onboard.title" /></Typography>
                 {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              <ExpansionPanelDetails style={{overflowX: 'auto'}}>
                 <OnboardSettings />
               </ExpansionPanelDetails>
             </ExpansionPanel>
@@ -80,7 +84,7 @@ class SetupPage extends React.Component {
                 <Typography variant="h2" className={classes.heading}><FormattedMessage id="settings.connection.title" /></Typography>
                 {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              <ExpansionPanelDetails style={{overflowX: 'auto'}}>
                 <ConnectionSettings />
               </ExpansionPanelDetails>
             </ExpansionPanel>

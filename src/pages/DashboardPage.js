@@ -8,9 +8,9 @@ import { queries } from '../components/configs/keenQuery.config.js';
 import '../components/configs/keenOverride.css';
 import { injectIntl } from 'react-intl';
 
-const style = {
+const style = theme => ({
   root: {
-    width: 'calc(100vw - 19px)',
+    width: '100%',
     minHeight: '100vh',
     position: 'relative',
     padding: 64,
@@ -19,9 +19,21 @@ const style = {
     left: 0,
     '& *': {
       transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+    },
+    [theme.breakpoints.down('md')]: {
+      '& .keen-dataviz .keen-dataviz-title, .keen-dataviz .text-label, .keen-dataviz .text-main': {
+        fontSize: '1rem'
+      }
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: 16,
+      paddingTop: 64,
+      '& .keen-dataviz .text-label': {
+        marginRight: '-100px !important'
+      }
     }
   },
-}
+});
 
 
 
