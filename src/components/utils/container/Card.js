@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core';
 
-const style = {
+const style = theme => ({
   root: {
     width: 'calc(100% - 32px)',
     height: 'calc(100% - 32px)',
@@ -12,9 +12,12 @@ const style = {
     padding: 32,
     margin: 16,
     position: 'relative',
-    // margin: 8
+    // margin: 8,
+    [theme.breakpoints.down('xs')]: {
+      padding: 16
+    }
   }
-}
+});
 
 class Card extends React.Component {
 
