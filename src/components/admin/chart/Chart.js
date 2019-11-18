@@ -11,44 +11,75 @@ class Graph extends React.Component {
 
     let values = [0];
     let max = Math.max(...initValues);
-    values.push(Math.round(max*0.25));
-    values.push(Math.round(max*0.50));
+    values.push(Math.round(max * 0.25));
+    values.push(Math.round(max * 0.50));
     values.push(Math.round(max));
     return values;
   }
 
+  // @todo remake this aweful method
   loadDataviz = () => {
     this.props.keenStore.readClient
       .query(this.props.keenQuery)
       .then((results) => {
-
-        const chart = new KeenDataviz({
-          container: '#' + this.props.graphId, // querySelector
-          title: this.props.title,
-          type: this.props.type,
-          grid: { x: { show: false }, y: { show: false } },
-          axis: {
-            y: {
-              tick: {
-                values: this.getYValues(results.result)
-                // count: 4,
-                // format: (nb) => Math.round(nb * 10) / 10
+        if(!this.props.dupQueryWith) {
+          const chart = new KeenDataviz({
+            container: '#' + this.props.graphId, // querySelector
+            title: this.props.title,
+            type: this.props.type,
+            grid: { x: { show: false }, y: { show: false } },
+            axis: {
+              y: {
+                tick: {
+                  values: this.getYValues(results.result)
+                }
               }
-            }
-          },
-          zoom: {
-            enabled: true
-          },
-          point: { "show": 2.5 },
-        });
+            },
+            zoom: {
+              enabled: true
+            },
+            point: { "show": 2.5 },
+          });
 
-        chart
-          .render(results);
+          chart.render(results);
+        } else {
+          this.props.keenStore.readClient
+          .query(this.props.dupQueryWith)
+          .then((results2) => {
+            results.result = this.mixResults(results.result, results2.result);
+            const chart = new KeenDataviz({
+              container: '#' + this.props.graphId, // querySelector
+              title: this.props.title,
+              type: this.props.type,
+              grid: { x: { show: false }, y: { show: false } },
+              axis: {
+                y: {
+                  tick: {
+                    values: this.getYValues(results.result)
+                  }
+                }
+              },
+              zoom: {
+                enabled: true
+              },
+              point: { "show": 2.5 },
+            });
+  
+            chart.render(results);
+          });
+        }
       })
       .catch((error) => {
         // chart
         //   .message(error.message);
       });
+  }
+
+  mixResults = (arrayA, arrayB) => {
+    arrayA.forEach((arrayAElt, index) => {
+      arrayAElt.value = arrayAElt.value + arrayB[index].value;
+    });
+    return arrayA;
   }
 
   componentDidMount() {
