@@ -22,52 +22,25 @@ class Graph extends React.Component {
     this.props.keenStore.readClient
       .query(this.props.keenQuery)
       .then((results) => {
-        if(!this.props.dupQueryWith) {
-          const chart = new KeenDataviz({
-            container: '#' + this.props.graphId, // querySelector
-            title: this.props.title,
-            type: this.props.type,
-            grid: { x: { show: false }, y: { show: false } },
-            axis: {
-              y: {
-                tick: {
-                  values: this.getYValues(results.result)
-                }
+        const chart = new KeenDataviz({
+          container: '#' + this.props.graphId, // querySelector
+          title: this.props.title,
+          type: this.props.type,
+          grid: { x: { show: false }, y: { show: false } },
+          axis: {
+            y: {
+              tick: {
+                values: this.getYValues(results.result)
               }
-            },
-            zoom: {
-              enabled: true
-            },
-            point: { "show": 2.5 },
-          });
+            }
+          },
+          zoom: {
+            enabled: true
+          },
+          point: { "show": 2.5 },
+        });
 
-          chart.render(results);
-        } else {
-          this.props.keenStore.readClient
-          .query(this.props.dupQueryWith)
-          .then((results2) => {
-            results.result = this.mixResults(results.result, results2.result);
-            const chart = new KeenDataviz({
-              container: '#' + this.props.graphId, // querySelector
-              title: this.props.title,
-              type: this.props.type,
-              grid: { x: { show: false }, y: { show: false } },
-              axis: {
-                y: {
-                  tick: {
-                    values: this.getYValues(results.result)
-                  }
-                }
-              },
-              zoom: {
-                enabled: true
-              },
-              point: { "show": 2.5 },
-            });
-  
-            chart.render(results);
-          });
-        }
+        chart.render(results);
       })
       .catch((error) => {
         // chart

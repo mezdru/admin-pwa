@@ -51,6 +51,7 @@
   "dashboard.chart.userActive.title": "Active Users",
   "dashboard.chart.search.title": "Searches",
   "dashboard.chart.contact.title": "Contacts",
+  "dashboard.chart.view.title": "Views",
   "dashboard.chart.contactByType.title": "Means of contact",
   "users.header.profile": "Profile",
   "users.header.accessDate": "Member since",
