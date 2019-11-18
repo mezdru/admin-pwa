@@ -51,7 +51,7 @@ class DashboardPage extends React.Component {
     this.setState({graphes: [
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.userActive.title'}), graphId: 'user-active', query: queries.userActiveInOrg, type: 'area-spline' },
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.search.title'}), graphId: 'search', query: queries.searchInOrg, type: 'area-spline' },
-      { title: this.props.intl.formatMessage({id: 'dashboard.chart.contact.title'}), graphId: 'contact', query: queries.contactInOrg, type: 'area-spline' },
+      { title: this.props.intl.formatMessage({id: 'dashboard.chart.contact.title'}), graphId: 'contact', query: queries.contactInOrg, type: 'area-spline', dupQueryWith: queries.profileView },
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.contactByType.title'}), graphId: 'contact-type', query: queries.contactByType, type: 'donut' }
     ]});
   }
@@ -71,7 +71,7 @@ class DashboardPage extends React.Component {
           {graphes.map( (graphe,index) =>
             <Grid item xs={12} md={6} lg={4} className={classes.block} key={index}>
               <Card>
-                <Chart title={graphe.title} keenQuery={graphe.query} graphId={graphe.graphId} type={graphe.type} />
+                <Chart title={graphe.title} keenQuery={graphe.query} dupQueryWith={graphe.dupQueryWith} graphId={graphe.graphId} type={graphe.type} />
               </Card>
             </Grid>
           )}
