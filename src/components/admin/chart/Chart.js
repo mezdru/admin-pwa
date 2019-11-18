@@ -17,11 +17,6 @@ class Graph extends React.Component {
     return values;
   }
 
-  loadData = async (query) => {
-    if (!query) return null;
-    return await this.props.keenStore.readClient.query(query).catch(e => null);
-  }
-
   // @todo remake this aweful method
   loadDataviz = () => {
     this.props.keenStore.readClient
