@@ -52,6 +52,7 @@
     "dashboard.chart.userActive.title": "Utilisateurs actifs",
     "dashboard.chart.search.title": "Recherches",
     "dashboard.chart.contact.title": "Contacts",
+    "dashboard.chart.view.title": "Vues",
     "dashboard.chart.contactByType.title": "Moyen de contact",
     "users.header.profile": "Profil",
     "users.header.accessDate": "Membre depuis",
