@@ -77,9 +77,13 @@ class UsersListPage extends React.Component {
     } else if (orderBy === 'oar.welcomed_date') {
       aVal = (new Date(a.orgsAndRecords[0].welcomed_date)).getTime();
       bVal = (new Date(b.orgsAndRecords[0].welcomed_date)).getTime();
+    } else if (orderBy === 'email.value') {
+      aVal = a.email.value;
+      bVal = b.email.value;
     } else {
-      aVal = (new Date(a[orderBy])).getTime();
-      bVal = (new Date(b[orderBy])).getTime();
+      console.log('else');
+      aVal = a[orderBy];
+      bVal = b[orderBy];
     }
 
     if (bVal < aVal) {

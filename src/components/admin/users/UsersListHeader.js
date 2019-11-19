@@ -6,7 +6,18 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
   <TableHead>
     <TableRow>
       <TableCell align="left"><Typography variant="h4"><FormattedMessage id="users.header.profile" /></Typography></TableCell>
-      <TableCell align="left"><Typography variant="h4"><FormattedMessage id="users.header.account" /></Typography></TableCell>
+      <TableCell align="left" sortDirection={orderBy === 'email.value' ? order : false}>
+        <Typography variant="h4">
+          <TableSortLabel
+            active={(orderBy === 'email.value' ? true : false)}
+            direction={order}
+            onClick={(e) => handleRequestSort(e, 'email.value')}
+            style={{ height: '1.3rem', width: '1.3rem' }}
+          >
+            <FormattedMessage id="users.header.account" />
+          </TableSortLabel>
+        </Typography>
+      </TableCell>
       <TableCell align="left" sortDirection={orderBy === 'oar.created' ? order : false}>
         <Typography variant="h4">
           <TableSortLabel
@@ -27,7 +38,7 @@ export default React.memo(({ handleRequestSort, orderBy, order, ...props }) =>
             onClick={(e) => handleRequestSort(e, 'oar.welcomed_date')}
             style={{ height: '1.3rem', width: '1.3rem' }}
           >
-            <FormattedMessage id="users.header.welcomedDate" /> 
+            <FormattedMessage id="users.header.welcomedDate" />
           </TableSortLabel>
         </Typography>
       </TableCell>
