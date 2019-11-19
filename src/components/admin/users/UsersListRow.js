@@ -17,7 +17,7 @@ export default React.memo(({ user, classes, onDelete, ...props }) =>
     </TableCell>
     <TableCell>
       <div className={classes.emailContainer}>
-        {user.email.value}
+        <span style={{fontSize: '.6rem'}}>{(user.email.validated ? '✔️' : '⌛')}</span>&nbsp;{user.email.value}
       </div>
     </TableCell>
     <TableCell>{moment(user.orgsAndRecords[0].created).calendar()}</TableCell>
