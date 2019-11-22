@@ -51,9 +51,9 @@ class DashboardPage extends React.Component {
     this.setState({graphes: [
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.userActive.title'}), graphId: 'user-active', query: queries.userActiveInOrg, type: 'area-spline' },
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.search.title'}), graphId: 'search', query: queries.searchInOrg, type: 'area-spline' },
+      { title: this.props.intl.formatMessage({id: 'dashboard.chart.view.title'}), graphId: 'view', query: queries.profileView, type: 'area-spline' },
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.contact.title'}), graphId: 'contact', query: queries.contactInOrg, type: 'area-spline' },
       { title: this.props.intl.formatMessage({id: 'dashboard.chart.contactByType.title'}), graphId: 'contact-type', query: queries.contactByType, type: 'donut' },
-      { title: this.props.intl.formatMessage({id: 'dashboard.chart.view.title'}), graphId: 'view', query: queries.profileView, type: 'area-spline' }
     ]});
   }
 
