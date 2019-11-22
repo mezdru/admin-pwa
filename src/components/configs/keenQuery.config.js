@@ -49,7 +49,7 @@ export const queries = {
   contactByType: {
     analysisType: 'count',
     eventCollection: 'contact',
-    timeframe: "this_7_days",
+    timeframe: "this_14_years",
     groupBy: ["item.type"],
   }
 }
