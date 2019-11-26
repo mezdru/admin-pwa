@@ -70,5 +70,14 @@
     "settings.onboard.contact": "Contactez nous !",
     "settings.general.title": "Paramètres généraux",
     "settings.onboard.title": "Gestion de l'onboard",
-    "settings.connection.title": "Gestion des accès"
+    "settings.connection.title": "Gestion des accès",
+    "settings.general.intro.label": "Le slogan de votre entreprise",
+    "settings.general.intro.helper": "Le slogan sera utilisé en tant que placeholder de la barre de recherche.",
+    "settings.general.tag.label": "Le tag de votre entreprise",
+    "settings.general.tag.helper": "Le tag est utilisé dans l'url afin de vous fournir un espace privé.",
+    "settings.general.name.label": "Le nom de votre entreprise",
+    "settings.general.name.helper": "Le nom de votre entreprise est utilisé pour vous proposer un service 'marque blanche'.",
+    "settings.general.cover.title": "La bannière de votre entreprise",
+    "settings.general.logo.title": "Le logo de votre entreprise",
+    "settings.general.save": "Sauver les modifications"
 }
