@@ -4,6 +4,7 @@ import { inject, observer } from "mobx-react";
 import { injectIntl } from 'react-intl';
 import ProfileService from '../../../services/profile.service';
 import defaultPicture from '../../../resources/images/placeholder_person.png';
+import defaultCover from '../../../resources/images/fly_away.jpg';
 import './uploadcare_customize.css';
 import undefsafe from 'undefsafe';
 
@@ -73,6 +74,7 @@ class PictureField extends React.Component {
     } else if (this.props.pictureType === 'cover') {
       this.props.orgStore.currentOrganisation.cover.url = file.cdnUrl;
     }
+    console.log(file);
     this.setState({pictureUrl: file.cdnUrl, loading: false});
   }
 
@@ -93,7 +95,7 @@ class PictureField extends React.Component {
               <CircularProgress color='secondary' className={classes.picture} size={300} />
             )}
             {(!loading || pictureUrl) && (
-              <img src={pictureUrl || defaultPicture} alt="" className={classes.picture} style={pictureStyle} />
+              <img src={pictureUrl || (pictureType === 'logo' ? defaultPicture : defaultCover) } alt="" className={classes.picture} style={pictureStyle} />
             )}
           </div>
 

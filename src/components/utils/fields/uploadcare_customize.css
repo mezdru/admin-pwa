@@ -22,7 +22,7 @@
 }
 
 .uploadcare--widget__text {
-  display: none;
+  /* display: none; */
 }
 
 .uploadcare--widget__button:hover, .uploadcare--widget__button:focus {
