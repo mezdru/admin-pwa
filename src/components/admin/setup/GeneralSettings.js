@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, Grid, Typography, TextField, Button } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
+import PictureField from '../../utils/fields/PictureField';
 
 const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
@@ -88,6 +89,22 @@ class GeneralSettings extends React.Component {
             variant="outlined"
           />
         </Grid>
+
+        {/* LOGO : 120x120 // COVER : 16:9 */}
+        <Grid item xs={12} md={5}>
+          <Typography variant="body1">
+            Logo
+          </Typography>
+          <PictureField pictureType="logo" />
+        </Grid>
+
+        <Grid item xs={12} md={5}>
+          <Typography variant="body1">
+            Cover
+          </Typography>
+          <PictureField pictureType="cover" />
+        </Grid>
+
         <Grid item xs={12}>
           <Button color="secondary" onClick={this.handleSave} fullWidth>
             Save changes
