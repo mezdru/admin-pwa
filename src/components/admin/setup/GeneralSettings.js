@@ -1,7 +1,8 @@
 import React from 'react';
-import { withStyles, Grid, Typography, TextField, Button } from '@material-ui/core';
+import { withStyles, Grid, Typography, TextField, Button, Divider } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 import PictureField from '../../utils/fields/PictureField';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
@@ -23,6 +24,13 @@ const style = {
   textField: {
     width: '100%',
     // maxWidth: 300
+  },
+  pictureTitle: {
+    marginBottom: 8,
+    textAlign: 'center'
+  },
+  divider: {
+    margin: '16px 8px'
   }
 };
 
@@ -51,15 +59,21 @@ class GeneralSettings extends React.Component {
     const { currentUser } = this.props.userStore;
     return (
       <Grid container item xs={12} md={6} spacing={16} direction="column" className={classes.root} justify="flex-start" >
+        <Grid item xs={12}>
+          <Typography variant="body1" className={classes.pictureTitle} >
+            <FormattedMessage id="settings.general.logo.title" />
+          </Typography>
+          <PictureField pictureType="logo" pictureStyle={{ width: 180, height: 180, borderRadius: 180 }} />
+        </Grid>
         <Grid item xs={12} >
           <TextField
             className={classes.textField}
-            label={"Organisation name"}
+            label={this.props.intl.formatMessage({id: 'settings.general.name.label'})}
             className={classes.textField}
             margin="normal"
             value={entities.decode(currentOrganisation.name)}
             onChange={(e) => this.handleChange(e, 'name')}
-            helperText={"The name of your organisation"}
+            helperText={this.props.intl.formatMessage({id: 'settings.general.name.helper'})}
             variant="outlined"
           />
         </Grid>
@@ -67,12 +81,12 @@ class GeneralSettings extends React.Component {
           <Grid item xs={12}>
             <TextField
               className={classes.textField}
-              label={"Organisation tag"}
+              label={this.props.intl.formatMessage({id: 'settings.general.tag.label'})}
               className={classes.textField}
               margin="normal"
               value={entities.decode(currentOrganisation.tag)}
               onChange={(e) => this.handleChange(e, 'tag')}
-              helperText={"The tag of your organisation, which is used in URL. The tag is unique."}
+              helperText={this.props.intl.formatMessage({id: 'settings.general.tag.helper'})}
               variant="outlined"
             />
           </Grid>
@@ -80,34 +94,30 @@ class GeneralSettings extends React.Component {
         <Grid item xs={12}>
           <TextField
             className={classes.textField}
-            label={"Organisation tagline"}
+            label={this.props.intl.formatMessage({id: 'settings.general.intro.label'})}
             className={classes.textField}
             margin="normal"
             value={entities.decode(currentOrganisation.intro[commonStore.locale])}
             onChange={(e) => this.handleChange(e, 'intro')}
-            helperText={"The introduction of your organisation, which will be used as search placeholder."}
+            helperText={this.props.intl.formatMessage({id: 'settings.general.intro.helper'})}
             variant="outlined"
           />
         </Grid>
 
         {/* LOGO : 120x120 // COVER : 16:9 */}
-        <Grid item xs={12} md={5}>
-          <Typography variant="body1">
-            Logo
+
+        <Grid item xs={12}>
+          <Typography variant="body1" className={classes.pictureTitle} >
+          <FormattedMessage id="settings.general.cover.title" />
           </Typography>
-          <PictureField pictureType="logo" />
+          <PictureField pictureType="cover" pictureStyle={{ width: '100%' }} />
         </Grid>
 
-        <Grid item xs={12} md={5}>
-          <Typography variant="body1">
-            Cover
-          </Typography>
-          <PictureField pictureType="cover" />
-        </Grid>
+        <Divider className={classes.divider} />
 
         <Grid item xs={12}>
           <Button color="secondary" onClick={this.handleSave} fullWidth>
-            Save changes
+          <FormattedMessage id="settings.general.save" />
           </Button>
         </Grid>
       </Grid>
@@ -116,5 +126,5 @@ class GeneralSettings extends React.Component {
 }
 
 export default inject('orgStore', 'userStore', 'commonStore')(observer(
-  withStyles(style)(GeneralSettings)
+  withStyles(style)(injectIntl(GeneralSettings))
 ))

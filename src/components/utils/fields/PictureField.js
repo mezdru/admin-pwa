@@ -12,7 +12,7 @@ const Uploader = React.lazy(() => import('../uploadcare/Uploader'));
 const styles = theme => ({
   pictureContainer: {
     position: 'relative',
-    margin: '0px 16px',
+    // margin: '0px 16px',
     textAlign: 'center',
     [theme.breakpoints.down('xs')] : {
       margin: 8,
@@ -21,8 +21,10 @@ const styles = theme => ({
   picture: {
     position: 'relative',
     borderRadius: '4px',
+    width: '100%',
+    boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
     // width:180,
-    height:180,
+    // height:180,
     [theme.breakpoints.down('xs')] : {
       width: 180,
       height: 180,
@@ -80,7 +82,7 @@ class PictureField extends React.Component {
 
   render() {
     const {pictureUrl, loading} = this.state;
-    const {classes, pictureType} = this.props;
+    const {classes, pictureType, pictureStyle} = this.props;
     const {currentOrganisation} = this.props.orgStore;
 
     return (
@@ -91,7 +93,7 @@ class PictureField extends React.Component {
               <CircularProgress color='secondary' className={classes.picture} size={300} />
             )}
             {(!loading || pictureUrl) && (
-              <img src={pictureUrl || defaultPicture} alt="" className={classes.picture} />
+              <img src={pictureUrl || defaultPicture} alt="" className={classes.picture} style={pictureStyle} />
             )}
           </div>
 
