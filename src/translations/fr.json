@@ -79,5 +79,6 @@
     "settings.general.name.helper": "Le nom de votre entreprise est utilisé pour vous proposer un service 'marque blanche'.",
     "settings.general.cover.title": "La bannière de votre entreprise",
     "settings.general.logo.title": "Le logo de votre entreprise",
-    "settings.general.save": "Sauver les modifications"
+    "settings.general.save": "Sauver les modifications",
+    "settings.connection.ambassadors.title": "Liste des ambassadeurs (par score)"
 }

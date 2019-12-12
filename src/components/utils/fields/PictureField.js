@@ -74,7 +74,6 @@ class PictureField extends React.Component {
     } else if (this.props.pictureType === 'cover') {
       this.props.orgStore.currentOrganisation.cover.url = file.cdnUrl;
     }
-    console.log(file);
     this.setState({pictureUrl: file.cdnUrl, loading: false});
   }
 
