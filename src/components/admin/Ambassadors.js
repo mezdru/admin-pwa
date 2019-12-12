@@ -42,7 +42,6 @@ class Ambassadors extends React.Component {
       "getAmbassadors",
       this.props.orgStore.currentOrganisation._id
     );
-    console.log(res);
     this.setState({ ambassadors: res });
   };
 
