@@ -301,6 +301,10 @@ const Invitation = {
           creator: userId
         }
       }
+    ),
+  getAmbassadors: (orgId) =>
+    requests.get(
+      API_ROOT + '/api/invitationCodes/ambassadors?organisation=' + orgId
     )
 }
 

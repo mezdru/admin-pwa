@@ -78,6 +78,7 @@
   "settings.general.name.helper": "Your company name will be used to provide you a white label service.",
   "settings.general.cover.title": "Your company cover",
   "settings.general.logo.title": "You company logo",
-  "settings.general.save": "Save changes"
+  "settings.general.save": "Save changes",
+  "settings.connection.ambassadors.title": "Ambassadors list (by score)"
 }
 
