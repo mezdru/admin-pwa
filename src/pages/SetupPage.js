@@ -29,7 +29,7 @@ const style = theme => ({
 class SetupPage extends React.Component {
 
   state = {
-    activePanel: "Connection"
+    activePanel: "GeneralSettings"
   }
 
   handleChangePanel = panel => (event, isExpanded) => {
