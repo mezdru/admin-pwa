@@ -80,5 +80,6 @@
     "settings.general.cover.title": "La bannière de votre entreprise",
     "settings.general.logo.title": "Le logo de votre entreprise",
     "settings.general.save": "Sauver les modifications",
-    "settings.connection.ambassadors.title": "Liste des ambassadeurs (par score)"
+    "settings.connection.ambassadors.title": "Liste des ambassadeurs (par score)",
+    "dashboard.chart.pwa.title": "Utilisateurs PWA"
 }
