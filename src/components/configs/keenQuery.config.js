@@ -50,6 +50,13 @@ export const queries = {
     timeframe: "this_7_weeks",
     filters: [{ "propertyName": "item.page", "operator": "eq", "propertyType": "String", "propertyValue": "profile" }],
   },
+  pwaUsage: {
+    analysisType: 'count',
+    eventCollection: 'pwa-usage',
+    timezone: 3600,
+    interval: "every_7_days",
+    timeframe: "this_7_weeks",
+  },
   contactByType: {
     analysisType: 'count',
     eventCollection: 'contact',
