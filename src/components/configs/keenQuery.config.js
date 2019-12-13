@@ -51,7 +51,8 @@ export const queries = {
     filters: [{ "propertyName": "item.page", "operator": "eq", "propertyType": "String", "propertyValue": "profile" }],
   },
   pwaUsage: {
-    analysisType: 'count',
+    analysisType: 'count_unique',
+    targetProperty: 'item.userEmitter',
     eventCollection: 'pwa-usage',
     timezone: 3600,
     interval: "every_7_days",

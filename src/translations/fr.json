@@ -52,7 +52,7 @@
     "dashboard.chart.userActive.title": "Utilisateurs actifs",
     "dashboard.chart.search.title": "Recherches",
     "dashboard.chart.contact.title": "Contacts",
-    "dashboard.chart.view.title": "Vues",
+    "dashboard.chart.view.title": "Profils consultés",
     "dashboard.chart.contactByType.title": "Moyen de contact",
     "users.header.profile": "Profil",
     "users.header.accessDate": "Membre depuis",
@@ -80,6 +80,6 @@
     "settings.general.cover.title": "La bannière de votre entreprise",
     "settings.general.logo.title": "Le logo de votre entreprise",
     "settings.general.save": "Sauver les modifications",
-    "settings.connection.ambassadors.title": "Liste des ambassadeurs (par score)",
+    "settings.connection.ambassadors.title": "Meilleurs ambassadeurs (par invitations)",
     "dashboard.chart.pwa.title": "Utilisateurs PWA"
 }

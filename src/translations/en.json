@@ -51,7 +51,7 @@
   "dashboard.chart.userActive.title": "Active Users",
   "dashboard.chart.search.title": "Searches",
   "dashboard.chart.contact.title": "Contacts",
-  "dashboard.chart.view.title": "Views",
+  "dashboard.chart.view.title": "Profiles viewed",
   "dashboard.chart.contactByType.title": "Means of contact",
   "users.header.profile": "Profile",
   "users.header.accessDate": "Member since",
@@ -79,7 +79,7 @@
   "settings.general.cover.title": "Your company cover",
   "settings.general.logo.title": "You company logo",
   "settings.general.save": "Save changes",
-  "settings.connection.ambassadors.title": "Ambassadors list (by score)",
+  "settings.connection.ambassadors.title": "Best ambassadors (by invitations)",
   "dashboard.chart.pwa.title": "PWA Users"
 }
 

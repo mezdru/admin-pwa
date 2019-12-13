@@ -53,6 +53,16 @@ class GeneralSettings extends React.Component {
     this.forceUpdate(); // why component do not update auto like Login fields ?
   }
 
+  getOrgIntro = () => {
+    let intro;
+    try {
+      intro = this.props.orgStore.currentOrganisation.intro[this.props.commonStore.locale];
+    } catch(e) {
+      intro = "";
+    }
+    return intro;
+  }
+
   render() {
     const { classes, commonStore } = this.props;
     const { currentOrganisation } = this.props.orgStore;
@@ -97,7 +107,7 @@ class GeneralSettings extends React.Component {
             label={this.props.intl.formatMessage({id: 'settings.general.intro.label'})}
             className={classes.textField}
             margin="normal"
-            value={entities.decode(currentOrganisation.intro[commonStore.locale])}
+            value={entities.decode(this.getOrgIntro())}
             onChange={(e) => this.handleChange(e, 'intro')}
             helperText={this.props.intl.formatMessage({id: 'settings.general.intro.helper'})}
             variant="outlined"
