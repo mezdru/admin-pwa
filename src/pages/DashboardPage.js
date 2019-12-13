@@ -7,6 +7,7 @@ import Chart from "../components/admin/chart/Chart";
 import { queries } from "../components/configs/keenQuery.config.js";
 import "../components/configs/keenOverride.css";
 import { injectIntl } from "react-intl";
+import Ambassadors from "../components/admin/Ambassadors";
 
 const style = theme => ({
   root: {
@@ -129,7 +130,11 @@ class DashboardPage extends React.Component {
                 key={index}
               >
                 <Card
-                  style={graphe.superadmin ? {backgroundColor: 'rgba(239,216,7,.95)'} : {}}
+                  style={
+                    graphe.superadmin
+                      ? { backgroundColor: "rgba(239,216,7,.95)" }
+                      : {}
+                  }
                 >
                   <Chart
                     title={graphe.title}
@@ -143,6 +148,11 @@ class DashboardPage extends React.Component {
               </Grid>
             );
           })}
+          <Grid item xs={12} md={6} lg={4} className={classes.block}>
+            <Card style={{ maxHeight: 365 }}>
+              <Ambassadors />
+            </Card>
+          </Grid>
         </Grid>
       </>
     );

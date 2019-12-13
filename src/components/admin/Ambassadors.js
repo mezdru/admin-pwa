@@ -48,10 +48,10 @@ class Ambassadors extends React.Component {
   render() {
     const { ambassadors } = this.state;
     const { classes } = this.props;
-
+  
     return (
       <>
-        <Typography variant="h4" style={{textAlign: 'center'}}>
+        <Typography variant="h2">
           <FormattedMessage id="settings.connection.ambassadors.title" />
         </Typography>
         <ol className={classes.root}>
