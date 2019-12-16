@@ -35,6 +35,14 @@ export const queries = {
     interval: "every_7_days",
     timeframe: "this_7_weeks",
   },
+  clapsGivenEvolution: {
+    analysisType: 'sum',
+    eventCollection: 'clap',
+    targetProperty: 'item.given',
+    timezone: 3600,
+    interval: "every_7_days",
+    timeframe: "this_7_weeks",
+  },
   contactInOrg: {
     analysisType: 'count',
     eventCollection: 'contact',
