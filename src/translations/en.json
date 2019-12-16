@@ -80,6 +80,7 @@
   "settings.general.logo.title": "You company logo",
   "settings.general.save": "Save changes",
   "settings.connection.ambassadors.title": "Best ambassadors (by invitations)",
-  "dashboard.chart.pwa.title": "PWA Users"
+  "dashboard.chart.pwa.title": "PWA Users",
+  "dashboard.chart.clapsGivenEvolution.title": "Claps given"
 }
 

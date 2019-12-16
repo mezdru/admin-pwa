@@ -81,5 +81,6 @@
     "settings.general.logo.title": "Le logo de votre entreprise",
     "settings.general.save": "Sauver les modifications",
     "settings.connection.ambassadors.title": "Meilleurs ambassadeurs (par invitations)",
-    "dashboard.chart.pwa.title": "Utilisateurs PWA"
+    "dashboard.chart.pwa.title": "Utilisateurs PWA",
+    "dashboard.chart.clapsGivenEvolution.title": "Claps donnés"
 }

@@ -90,6 +90,14 @@ class DashboardPage extends React.Component {
         },
         {
           title: this.props.intl.formatMessage({
+            id: "dashboard.chart.clapsGivenEvolution.title"
+          }),
+          graphId: "claps-given",
+          query: queries.clapsGivenEvolution,
+          type: "area-spline"
+        },
+        {
+          title: this.props.intl.formatMessage({
             id: "dashboard.chart.pwa.title"
           }),
           graphId: "pwa",
