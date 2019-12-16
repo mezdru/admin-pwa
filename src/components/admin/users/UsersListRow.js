@@ -4,6 +4,7 @@ import moment from 'moment';
 import MiniProfileCard from '../../../components/utils/container/MiniProfileCard';
 import undefsafe from 'undefsafe';
 import RemoveAccountAction from './RemoveAccountAction';
+import AuthProvider from './AuthProvider';
 
 export default React.memo(({ user, classes, onDelete, ...props }) =>
   <TableRow >
@@ -16,6 +17,7 @@ export default React.memo(({ user, classes, onDelete, ...props }) =>
       />
     </TableCell>
     <TableCell>
+      <AuthProvider user={user} />
       <div className={classes.emailContainer}>
         <span style={{fontSize: '.6rem'}}>{(user.email.validated ? '✔️' : '⌛')}</span>&nbsp;{user.email.value}
       </div>
