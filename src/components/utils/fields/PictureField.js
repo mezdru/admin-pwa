@@ -91,7 +91,7 @@ class PictureField extends React.Component {
 
           <div className={classes.pictureContainer} style={this.props.style} >
             { (loading && !pictureUrl) && (
-              <CircularProgress color='secondary' className={classes.picture} size={300} />
+              <CircularProgress color='secondary' size={300} />
             )}
             {(!loading || pictureUrl) && (
               <img src={pictureUrl || (pictureType === 'logo' ? defaultPicture : defaultCover) } alt="" className={classes.picture} style={pictureStyle} />
