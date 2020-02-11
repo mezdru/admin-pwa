@@ -26,27 +26,13 @@ class OnboardSettings extends React.Component {
 		this.setState({ steps: this.buildSteps(this.props.orgStore.currentOrganisation, this.props.commonStore.locale) });
 	}
 
+	// @todo Remake this method with same logic as onboard stepper 
 	buildSteps(org, locale) {
-		if (!org.onboardSteps || org.onboardSteps.length === 0) {
-			return [
-				this.props.intl.formatMessage({ id: 'settings.onboard.steps.intro' }),
-				this.props.intl.formatMessage({ id: 'settings.onboard.steps.contacts' }),
-				this.props.intl.formatMessage({ id: 'settings.onboard.steps.wings' })
-			]
-		}
-		else {
-			let steps = [];
-			org.onboardSteps.forEach(step => {
-				if (step.charAt(0) === '#') {
-					let stepWings = org.featuredWingsFamily.find(f => f.tag === step);
-					let title = stepWings.intro_translated ? (stepWings.intro_translated[locale] || stepWings.intro) : stepWings.intro;
-					steps.push(title);
-				} else {
-					steps.push(this.props.intl.formatMessage({ id: 'settings.onboard.steps.' + step }));
-				}
-			});
-			return steps;
-		}
+		return [
+			this.props.intl.formatMessage({ id: 'settings.onboard.steps.intro' }),
+			this.props.intl.formatMessage({ id: 'settings.onboard.steps.contacts' }),
+			this.props.intl.formatMessage({ id: 'settings.onboard.steps.wings' })
+		];
 	}
 
 	render() {
